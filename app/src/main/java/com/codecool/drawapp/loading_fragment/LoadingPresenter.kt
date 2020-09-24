@@ -23,9 +23,10 @@ class LoadingPresenter (val view : LoadingContractor) {
                             val user = it.getValue(User::class.java)
                             if ( user == null) false
                             else user.emailAdress == firebaseUser.email
-                        }.isEmpty())
+                        }.isNotEmpty())
+                    } else {
+                        view.isLoggedIn(false)
                     }
-                    view.isLoggedIn(false)
                 }
             })
             return
