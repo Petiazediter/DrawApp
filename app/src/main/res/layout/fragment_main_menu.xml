@@ -36,4 +36,53 @@
         style="@style/ShadowText"
         tools:text="username"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/usernameText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/log_out_button"
+        app:layout_constrainedHeight="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="40dp">
+
+            <Button
+                android:id="@+id/create_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/GreenButton"
+                android:layout_margin="10dp"
+                android:text="Create Game"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/friends"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/OrangeButton"
+                android:text="Friends"
+                android:textSize="25sp"/>
+
+        <Button
+            android:id="@+id/settings"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/BlueButton"
+            android:text="Settings"
+            android:textSize="25sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/log_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_logout"
+        app:tint="@color/redDark"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.ProjectDatabase
 import kotlinx.android.synthetic.main.fragment_main_menu.*
@@ -17,5 +18,9 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         usernameText.text = ProjectDatabase.FIREBASE_AUTH.currentUser?.displayName
+        log_out_button.setOnClickListener{
+            ProjectDatabase.FIREBASE_AUTH.signOut()
+            findNavController().navigate(R.id.action_mainMenuFragment_to_loadingFragment)
+        }
     }
 }
