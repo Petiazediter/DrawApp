@@ -3,6 +3,8 @@ package com.codecool.drawapp.dependency.register
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.ProjectDatabase
 import com.codecool.drawapp.data_layer.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -40,6 +42,10 @@ class RegisterImplementation : RegisterService {
                 val newId = users.push().key.toString()
                 val user : User = User(newId, username, email, true)
                 users.child(newId).setValue(user)
+                it.result?.user?.let{
+                     val profileUpdates = UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                     it.updateProfile(profileUpdates)
+                }
                 view.onSuccess()
             }else {
                 it.exception?.message?.let{ view.onError(it) }
