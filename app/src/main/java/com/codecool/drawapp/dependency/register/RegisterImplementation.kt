@@ -5,6 +5,7 @@ import com.codecool.drawapp.data_layer.ProjectDatabase
 import com.codecool.drawapp.data_layer.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class RegisterImplementation : RegisterService {
@@ -35,6 +36,10 @@ class RegisterImplementation : RegisterService {
     private fun registerAccount(username: String, password: String, email: String, view: RegisterImplementation.RegisterCallback) {
         ProjectDatabase.FIREBASE_AUTH.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
             if ( it.isSuccessful()){
+                val users = ProjectDatabase.FIREBASE_DB.getReference("users")
+                val newId = users.push().key.toString()
+                val user : User = User(newId, username, email, true)
+                users.child(newId).setValue(user)
                 view.onSuccess()
             }else {
                 it.exception?.message?.let{ view.onError(it) }

@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:indeterminateTint="@color/greenDark"
+        android:indeterminateTint="@android:color/white"
         android:indeterminateDrawable="@drawable/rotate_setting"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -27,7 +27,7 @@
         android:layout_margin="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/loading"
+        android:text="Checking for account data"
         style="@style/ShadowText"
         android:textColor="@android:color/white"
         android:fontFamily="@font/roboto_bold"
