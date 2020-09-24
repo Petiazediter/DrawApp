@@ -27,7 +27,7 @@
         android:layout_margin="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Checking for account data"
+        android:text="@string/checking_for_account_data"
         style="@style/ShadowText"
         android:textColor="@android:color/white"
         android:fontFamily="@font/roboto_bold"

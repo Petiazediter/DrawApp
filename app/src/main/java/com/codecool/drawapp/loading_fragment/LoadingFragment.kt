@@ -28,8 +28,7 @@ class LoadingFragment : Fragment(), LoadingContractor {
     }
 
     override fun isLoggedIn(loggedIn: Boolean) {
-        if ( loggedIn ){
-
-        } else findNavController().navigate(R.id.action_loadingFragment_to_loginFragment)
+        if ( loggedIn ) findNavController().navigate(R.id.action_loadingFragment_to_loginFragment)
+        else findNavController().navigate(R.id.action_loadingFragment_to_loginFragment)
     }
 }
