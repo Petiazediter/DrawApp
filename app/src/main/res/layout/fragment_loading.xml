@@ -15,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:indeterminateTint="@color/orange"
         style="@style/Progress"
         android:indeterminateDrawable="@drawable/rotate_setting"
         app:layout_constraintBottom_toBottomOf="parent"/>
