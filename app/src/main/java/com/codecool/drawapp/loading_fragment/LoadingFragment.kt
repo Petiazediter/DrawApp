@@ -23,5 +23,4 @@ class LoadingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-
 }
