@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import com.jaredrummler.android.widget.AnimatedSvgView
 import kotlinx.android.synthetic.main.fragment_loading.view.*
@@ -29,8 +30,6 @@ class LoadingFragment : Fragment(), LoadingContractor {
     override fun isLoggedIn(loggedIn: Boolean) {
         if ( loggedIn ){
 
-        } else {
-
-        }
+        } else findNavController().navigate(R.id.action_loadingFragment_to_loginFragment)
     }
 }
