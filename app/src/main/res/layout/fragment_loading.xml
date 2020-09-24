@@ -7,6 +7,24 @@
     android:background="@drawable/ic_background"
     tools:context=".loading_fragment.LoadingFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/ic_baseline_settings_24"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/progress_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

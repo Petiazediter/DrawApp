@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DrawApp</string>
+    <string name="loading">Loading...</string>
 </resources>
