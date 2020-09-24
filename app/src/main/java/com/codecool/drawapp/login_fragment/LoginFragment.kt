@@ -25,7 +25,7 @@ class LoginFragment : Fragment(), LoginContractor {
         sign_in_button.setOnClickListener {
             hideEdit()
             val userName = username.text.toString()
-            val password = username.password.toString()
+            val password = password.text.toString()
             presenter.onLogin(userName, password)
         }
     }
@@ -34,4 +34,19 @@ class LoginFragment : Fragment(), LoginContractor {
         edit_layout.visibility = View.INVISIBLE
         loading_bar.visibility = View.VISIBLE
     }
+
+    private fun showEdit(){
+        edit_layout.visibility = View.VISIBLE
+        loading_bar.visibility = View.INVISIBLE
+    }
+
+    override fun onError(error: String) {
+        showEdit()
+        username.setError(error)
+    }
+
+    override fun onSuccess() {
+        findNavController().navigate(R.id.action_loginFragment_to_loadingFragment)
+    }
+
 }
