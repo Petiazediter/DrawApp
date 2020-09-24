@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/smoke"
         android:text="@string/app_name"
+        style="@style/ShadowText"
         android:textColor="@android:color/white"
         android:fontFamily="@font/roboto_bold"
         android:textSize="29sp"/>

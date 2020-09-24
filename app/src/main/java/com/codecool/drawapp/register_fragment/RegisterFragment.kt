@@ -7,16 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
+import kotlinx.android.synthetic.main.fragment_loading.*
 import kotlinx.android.synthetic.main.fragment_register.*
 
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : Fragment(), RegisterContractor {
+
+    lateinit var presenter : RegisterPresenter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter = RegisterPresenter(this)
+
         sign_in_button.setOnClickListener { findNavController().navigate(R.id.action_registerFragment_to_loginFragment) }
+        sign_up_button.setOnClickListener {
+            hideEdit()
+        }
     }
+
+    private fun hideEdit(){
+        edit_layout.visibility = View.INVISIBLE
+        loading_bar.visibility = View.VISIBLE
+    }
+
 }

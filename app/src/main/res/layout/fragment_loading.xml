@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
+    tools:background="@drawable/ic_svg_bg"
     tools:context=".loading_fragment.LoadingFragment">
 
     <ProgressBar
@@ -15,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        style="@style/Progress"
+        android:indeterminateTint="@color/greenDark"
         android:indeterminateDrawable="@drawable/rotate_setting"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -27,7 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loading"
-        style="@style/Progress"
+        style="@style/ShadowText"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/roboto_bold"
         android:textSize="25sp"/>
 
