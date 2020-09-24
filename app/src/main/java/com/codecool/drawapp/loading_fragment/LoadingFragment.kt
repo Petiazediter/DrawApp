@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
-import com.jaredrummler.android.widget.AnimatedSvgView
 import kotlinx.android.synthetic.main.fragment_loading.view.*
 
 class LoadingFragment : Fragment(), LoadingContractor {

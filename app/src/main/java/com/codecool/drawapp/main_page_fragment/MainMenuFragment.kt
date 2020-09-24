@@ -18,9 +18,5 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         usernameText.text = ProjectDatabase.FIREBASE_AUTH.currentUser?.displayName
-        log_out_button.setOnClickListener{
-            ProjectDatabase.FIREBASE_AUTH.signOut()
-            findNavController().navigate(R.id.action_mainMenuFragment_to_loadingFragment)
-        }
     }
 }
