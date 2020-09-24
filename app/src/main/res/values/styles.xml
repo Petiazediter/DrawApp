@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme"  parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/purpleDark</item>
+        <item name="colorAccent">@color/red</item>
     </style>
 
     <style name="Progress">
@@ -13,9 +13,23 @@
         <item name="android:shadowDy">10</item>
     </style>
 
-    <style name="Base.TextAppearance.AppCompat.Button.Purple">
+    <style name="Base.TextAppearance.AppCompat.Button.Orange">
         <item name="android:background">@drawable/button_bg</item>
-        <item name="android:backgroundTint">@color/prupleDark</item>
+        <item name="android:backgroundTint">@color/orangeDark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Button.Blue">
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:backgroundTint">@color/blueDark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Button.Green">
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:backgroundTint">@color/greenDark</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
     </style>

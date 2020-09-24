@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:background="@color/backgroundColor"
+    android:background="@android:color/transparent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".login_fragment.LoginFragment">
 
@@ -30,6 +30,7 @@
             android:id="@+id/username"
             android:padding="10dp"
             android:background="@drawable/edit_bg"
+            android:backgroundTint="@color/backgroundColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username"
@@ -42,6 +43,7 @@
             android:layout_marginVertical="10dp"
             android:id="@+id/password"
             android:padding="10dp"
+            android:backgroundTint="@color/backgroundColor"
             android:background="@drawable/edit_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,16 +54,17 @@
             android:drawableStart="@drawable/ic_baseline_lock_24" />
 
         <Button
-        android:id="@+id/sign_in_button"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:textSize="19sp"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:drawableLeft="@drawable/ic_baseline_open_in_new_24"
-        android:padding="10dp"
-        android:drawableTint="@android:color/white"
-        style="@style/Base.TextAppearance.AppCompat.Button.Purple"/>
+            android:id="@+id/sign_in_button"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:textSize="19sp"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in"
+            android:drawableStart="@drawable/ic_baseline_open_in_new_24"
+            android:padding="10dp"
+            android:paddingEnd="20dp"
+            android:drawableTint="@android:color/white"
+        style="@style/Base.TextAppearance.AppCompat.Button.Green"/>
 
         <Button
             android:id="@+id/sign_up_button"
@@ -69,11 +72,12 @@
             android:layout_width="match_parent"
             android:textSize="19sp"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:drawableLeft="@drawable/ic_baseline_add_24"
+            android:text="@string/sign_up"
+            android:drawableStart="@drawable/ic_baseline_add_24"
             android:padding="10dp"
+            android:paddingEnd="20dp"
             android:drawableTint="@android:color/white"
-            style="@style/Base.TextAppearance.AppCompat.Button.Purple"/>
+            style="@style/Base.TextAppearance.AppCompat.Button.Blue"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
