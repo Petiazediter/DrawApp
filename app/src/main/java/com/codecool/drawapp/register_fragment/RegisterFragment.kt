@@ -26,6 +26,7 @@ class RegisterFragment : Fragment(), RegisterContractor {
         sign_in_button.setOnClickListener { findNavController().navigate(R.id.action_registerFragment_to_loginFragment) }
         sign_up_button.setOnClickListener {
             hideEdit()
+            presenter.attemptRegister()
         }
     }
 
