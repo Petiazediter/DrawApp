@@ -12,4 +12,11 @@
         <item name="android:shadowRadius">10</item>
         <item name="android:shadowDy">10</item>
     </style>
+
+    <style name="Base.TextAppearance.AppCompat.Button.Purple">
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:backgroundTint">@color/prupleDark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
 </resources>

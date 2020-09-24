@@ -11,4 +11,6 @@
     <color name="prupleDark">#7a6879</color>
     <color name="purpleMed">#8a7688</color>
     <color name="purpleSunny">#a191b2</color>
+
+    <color name="backgroundColor">#f0f0f0</color>
 </resources>
