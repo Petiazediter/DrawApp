@@ -1,5 +1,7 @@
 package com.codecool.drawapp.dependency
 
+import com.codecool.drawapp.dependency.add_friend.AddFriendImplementation
+import com.codecool.drawapp.dependency.add_friend.AddFriendService
 import com.codecool.drawapp.dependency.friends.FriendsImplementation
 import com.codecool.drawapp.dependency.friends.FriendsService
 import com.codecool.drawapp.dependency.login.LoginImplementation
@@ -12,4 +14,5 @@ val appModule = module{
     single<RegisterService> { RegisterImplementation() }
     single<LoginService> { LoginImplementation() }
     single<FriendsService> { FriendsImplementation() }
+    single<AddFriendService>{ AddFriendImplementation()}
 }

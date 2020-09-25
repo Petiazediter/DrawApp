@@ -8,6 +8,7 @@
     tools:context=".friend_invites.InvitesFragment">
 
     <EditText
+        android:id="@+id/add_friend_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constrainedWidth="true"

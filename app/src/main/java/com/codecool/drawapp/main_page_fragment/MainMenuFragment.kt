@@ -20,5 +20,9 @@ class MainMenuFragment : Fragment() {
         usernameText.text = ProjectDatabase.FIREBASE_AUTH.currentUser?.displayName
         friends.setOnClickListener {
             findNavController().navigate(R.id.action_mainMenuFragment_to_friendsFragment)}
+
+        notification_button.setOnClickListener{
+            ProjectDatabase.FIREBASE_AUTH.signOut()
+            findNavController().navigate(R.id.action_mainMenuFragment_to_loadingFragment)}
     }
 }
