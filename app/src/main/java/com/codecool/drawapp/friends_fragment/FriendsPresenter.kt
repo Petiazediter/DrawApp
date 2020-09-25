@@ -8,13 +8,13 @@ import org.koin.core.inject
 
 class FriendsPresenter(val view : FriendsContractor) : KoinComponent {
     val friendsService : FriendsService by inject()
-    fun setUpRecylcer(){
+    fun setUpRecycler(){
         friendsService.getUserFriendList(object : FriendsImplementation.FriendsCallback{
             override fun getFriendsCallback(friends: List<User>) {
                 if ( friends.isNullOrEmpty()) view.emptyRecycler()
                 else {
                     val adapter = FriendsAdapter(friends)
-                    view.displayRecylcer(adapter)}
+                    view.displayRecycler(adapter)}
             }
         })
     }

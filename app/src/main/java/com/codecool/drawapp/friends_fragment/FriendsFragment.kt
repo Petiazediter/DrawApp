@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codecool.drawapp.R
@@ -23,10 +22,14 @@ class FriendsFragment : Fragment(), FriendsContractor {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = FriendsPresenter(this)
-        presenter.setUpRecylcer()
+        presenter.setUpRecycler()
+
+        my_invites.setOnClickListener {
+            
+        }
     }
 
-    override fun displayRecylcer(adapter: FriendsAdapter) {
+    override fun displayRecycler(adapter: FriendsAdapter) {
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL, false)
         recycler.visibility = View.VISIBLE
