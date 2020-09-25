@@ -59,5 +59,13 @@
             app:destination="@id/loadingFragment"
             app:popUpTo="@id/mainMenuFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_friendsFragment"
+            app:destination="@id/friendsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/friendsFragment"
+        android:name="com.codecool.drawapp.friends_fragment.FriendsFragment"
+        android:label="fragment_friends"
+        tools:layout="@layout/fragment_friends" />
 </navigation>

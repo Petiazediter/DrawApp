@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.codecool.drawapp.R
+import kotlinx.android.synthetic.main.fragment_friends.*
 
 class FriendsFragment : Fragment(), FriendsContractor {
 
@@ -22,4 +26,15 @@ class FriendsFragment : Fragment(), FriendsContractor {
         presenter.setUpRecylcer()
     }
 
+    override fun displayRecylcer(adapter: FriendsAdapter) {
+        recycler.adapter = adapter
+        recycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL, false)
+        recycler.visibility = View.VISIBLE
+        loading_bar.visibility = View.INVISIBLE
+    }
+
+    override fun emptyRecycler() {
+        loading_bar.visibility = View.INVISIBLE
+        empty_alert.visibility = View.VISIBLE
+    }
 }

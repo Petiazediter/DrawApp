@@ -18,5 +18,7 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         usernameText.text = ProjectDatabase.FIREBASE_AUTH.currentUser?.displayName
+        friends.setOnClickListener {
+            findNavController().navigate(R.id.action_mainMenuFragment_to_friendsFragment)}
     }
 }
