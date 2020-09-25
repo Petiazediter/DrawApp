@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.User
+import kotlinx.android.synthetic.main.friend_request_row.view.*
 
-class FriendRequestAdapter(private val users : List<User>, private val layoutInflater: LayoutInflater) : RecyclerView.Adapter<FriendRequestAdapter.ViewHolder>() {
+class FriendRequestAdapter(private val users : List<User>, private val layoutInflater: LayoutInflater, view : InvitesContractor) : RecyclerView.Adapter<FriendRequestAdapter.ViewHolder>() {
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 
@@ -20,5 +21,6 @@ class FriendRequestAdapter(private val users : List<User>, private val layoutInf
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.itemView.name_space.text = users.get(position).userName
     }
 }

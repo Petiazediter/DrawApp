@@ -41,7 +41,23 @@ class InvitesFragment : Fragment(), InvitesContractor {
     override fun setInvitesRecycler(list: List<User>) {
         loading_bar.visibility = View.INVISIBLE
         my_invites_recycler.visibility = View.VISIBLE
-        my_invites_recycler.adapter = FriendRequestAdapter(list, LayoutInflater.from(requireContext()))
+        my_invites_recycler.adapter = FriendRequestAdapter(list, LayoutInflater.from(requireContext()),this)
         my_invites_recycler.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+    }
+
+
+    private fun showLoading(){
+        my_invites_recycler.visibility = View.INVISIBLE
+        loading_bar.visibility = View.VISIBLE
+    }
+
+    override fun acceptFriendRequest(userId: String) {
+        showLoading()
+        presenter.acceptFriendRequest(userId)
+    }
+
+    override fun declineFriendRequest(userId: String) {
+        showLoading()
+        presenter.declineFriendRequest(userId)
     }
 }

@@ -1,6 +1,7 @@
 package com.codecool.drawapp.friend_invites
 
 import android.util.Log
+import com.codecool.drawapp.data_layer.ProjectDatabase
 import com.codecool.drawapp.data_layer.User
 import com.codecool.drawapp.dependency.add_friend.AddFriendImplementation
 import com.codecool.drawapp.dependency.add_friend.AddFriendService
@@ -33,5 +34,13 @@ class InvitesPresenter ( val view : InvitesContractor) : KoinComponent {
                 else view.setInvitesRecycler(invites)
             }
         })
+    }
+
+    fun acceptFriendRequest ( userId : String){
+
+    }
+
+    fun declineFriendRequest(userId : String){
+
     }
 }
