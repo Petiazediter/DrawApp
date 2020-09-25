@@ -17,6 +17,7 @@ class InvitesPresenter ( view : InvitesContractor) : KoinComponent {
 
             override fun onSuccess() {
                 Log.d("InvitesPresenter", "addFriend() -> success")
+
             }
         })
     }
