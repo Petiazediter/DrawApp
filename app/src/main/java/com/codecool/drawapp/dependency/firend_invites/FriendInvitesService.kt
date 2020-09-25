@@ -1,0 +1,5 @@
+package com.codecool.drawapp.dependency.firend_invites
+
+interface FriendInvitesService {
+    fun getUserFriendInvites( view : FriendInvitesImplementation.FriendInvitesCallback)
+}

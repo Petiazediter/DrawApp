@@ -4,6 +4,8 @@ import com.codecool.drawapp.dependency.add_friend.AddFriendImplementation
 import com.codecool.drawapp.dependency.add_friend.AddFriendService
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueries
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueryService
+import com.codecool.drawapp.dependency.firend_invites.FriendInvitesImplementation
+import com.codecool.drawapp.dependency.firend_invites.FriendInvitesService
 import com.codecool.drawapp.dependency.friends.FriendsImplementation
 import com.codecool.drawapp.dependency.friends.FriendsService
 import com.codecool.drawapp.dependency.login.LoginImplementation
@@ -18,4 +20,5 @@ val appModule = module{
     single<FriendsService> { FriendsImplementation() }
     single<AddFriendService>{ AddFriendImplementation()}
     single<BasicDatabaseQueryService>{ BasicDatabaseQueries()}
+    single<FriendInvitesService>{ FriendInvitesImplementation()}
 }

@@ -8,7 +8,7 @@ import com.google.firebase.database.ValueEventListener
 
 class FriendsImplementation : FriendsService {
     interface FriendsCallback{
-        fun getFriendsCallback( firends : List<User> )
+        fun getFriendsCallback( friends : List<User> )
     }
 
     override fun getUserFriendList(view: FriendsCallback) {
