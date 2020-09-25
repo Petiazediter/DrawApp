@@ -38,4 +38,9 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="RedButton" parent="Base.TextAppearance.AppCompat.Button.CustomButton">
+        <item name="android:backgroundTint">@color/redDark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
