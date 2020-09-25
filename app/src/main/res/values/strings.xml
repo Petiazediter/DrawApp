@@ -15,4 +15,5 @@
     <string name="add_friend">Add friend</string>
     <string name="friend_invites">Friend Invites</string>
     <string name="name">Name</string>
+    <string name="there_re_no_friend_requests">There\'re no friend requests!</string>
 </resources>
