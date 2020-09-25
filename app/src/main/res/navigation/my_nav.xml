@@ -67,5 +67,14 @@
         android:id="@+id/friendsFragment"
         android:name="com.codecool.drawapp.friends_fragment.FriendsFragment"
         android:label="fragment_friends"
-        tools:layout="@layout/fragment_friends" />
+        tools:layout="@layout/fragment_friends" >
+        <action
+            android:id="@+id/action_friendsFragment_to_invitesFragment"
+            app:destination="@id/invitesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/invitesFragment"
+        android:name="com.codecool.drawapp.friend_invites.InvitesFragment"
+        android:label="fragment_invites"
+        tools:layout="@layout/fragment_invites" />
 </navigation>

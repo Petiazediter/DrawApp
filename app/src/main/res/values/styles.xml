@@ -43,4 +43,10 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_bg</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
 </resources>

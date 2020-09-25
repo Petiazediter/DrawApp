@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".friends_fragment.FriendsFragment"
-    android:background="@color/purple">
+    android:background="@drawable/ic_svg_bg">
 
      <include
          android:id="@+id/logo_layout"

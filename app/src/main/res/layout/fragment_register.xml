@@ -28,7 +28,6 @@
 
         <EditText
             android:backgroundTint="@color/backgroundColor"
-
             android:layout_marginVertical="10dp"
             android:id="@+id/username"
             android:padding="10dp"

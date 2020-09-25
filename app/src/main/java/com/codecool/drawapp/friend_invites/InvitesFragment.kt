@@ -15,5 +15,4 @@ class InvitesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_invites, container, false)
     }
 
-
 }

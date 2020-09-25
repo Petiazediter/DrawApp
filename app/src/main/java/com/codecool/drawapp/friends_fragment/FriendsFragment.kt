@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codecool.drawapp.R
@@ -25,7 +26,7 @@ class FriendsFragment : Fragment(), FriendsContractor {
         presenter.setUpRecycler()
 
         my_invites.setOnClickListener {
-            
+            findNavController().navigate(R.id.action_friendsFragment_to_invitesFragment)
         }
     }
 
