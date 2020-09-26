@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.User
+import kotlinx.android.synthetic.main.friend_row.view.*
 
 class FriendsAdapter(val listOfUser : List<User>, val layoutInflater: LayoutInflater,val view : FriendsContractor) : RecyclerView.Adapter<FriendsAdapter.FriendViewHolder>() {
 
@@ -19,5 +20,7 @@ class FriendsAdapter(val listOfUser : List<User>, val layoutInflater: LayoutInfl
         return listOfUser.size
     }
 
-    override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {}
+    override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
+        holder.itemView.name_space.text = listOfUser[position].userName
+    }
 }

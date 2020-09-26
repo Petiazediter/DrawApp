@@ -18,4 +18,5 @@
     <string name="there_re_no_friend_requests">There\'re no friend requests!</string>
     <string name="accept_button_for_friend_invite">Accept button for friend invite</string>
     <string name="decline_button_for_friend_inve">Decline button for friend inve</string>
+    <string name="join">Join</string>
 </resources>

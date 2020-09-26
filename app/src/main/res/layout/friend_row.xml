@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
-    android:layout_margin="10dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/edit_bg"
+    android:backgroundTint="@color/yellowDark"
+    android:padding="10dp"
     android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/name_space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/ShadowText"
+        android:textSize="22sp"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/white"
+        tools:text="Username"/>
+
+    <Button
+        android:id="@+id/join_button"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/GreenButton"
+        android:textSize="17sp"
+        android:text="@string/join"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
