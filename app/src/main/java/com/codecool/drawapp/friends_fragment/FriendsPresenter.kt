@@ -12,9 +12,7 @@ class FriendsPresenter(val view : FriendsContractor) : KoinComponent {
         friendsService.getUserFriendList(object : FriendsImplementation.FriendsCallback{
             override fun getFriendsCallback(friends: List<User>) {
                 if ( friends.isNullOrEmpty()) view.emptyRecycler()
-                else {
-                    val adapter = FriendsAdapter(friends)
-                    view.displayRecycler(adapter)}
+                else view.displayRecycler(friends)
             }
         })
     }

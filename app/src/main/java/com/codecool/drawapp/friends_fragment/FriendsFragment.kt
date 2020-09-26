@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codecool.drawapp.R
+import com.codecool.drawapp.data_layer.User
 import kotlinx.android.synthetic.main.fragment_friends.*
 
 class FriendsFragment : Fragment(), FriendsContractor {
@@ -30,8 +31,8 @@ class FriendsFragment : Fragment(), FriendsContractor {
         }
     }
 
-    override fun displayRecycler(adapter: FriendsAdapter) {
-        recycler.adapter = adapter
+    override fun displayRecycler(list: List<User>) {
+        recycler.adapter = FriendsAdapter(list, LayoutInflater.from(requireContext()),this)
         recycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL, false)
         recycler.visibility = View.VISIBLE
         loading_bar.visibility = View.INVISIBLE
