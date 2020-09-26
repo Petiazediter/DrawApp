@@ -32,4 +32,26 @@ class BasicDatabaseQueries : BasicDatabaseQueryService {
             })
         }
     }
+
+    interface GetUserByIdCallback{
+        fun onComplete ( user : User)
+        fun onError ( )
+    }
+    override fun getUserById(userId: String, view : GetUserByIdCallback) {
+        ProjectDatabase.FIREBASE_DB.getReference("users").addListenerForSingleValueEvent(object  : ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+                view.onError()
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if ( !snapshot.exists()) view.onError()
+                else {
+                    val filtered = snapshot.children.filter { it.getValue(User::class.java)!!.userId == userId }
+                    if (filtered.isNullOrEmpty()) view.onError()
+                    else view.onComplete(filtered.map{it.getValue(User::class.java)!!}[0])
+                }
+            }
+        })
+
+    }
 }

@@ -36,7 +36,11 @@ class InvitesPresenter ( val view : InvitesContractor) : KoinComponent {
     }
 
     fun acceptFriendRequest ( userId : String){
-
+        friendInvitesService.acceptFriendInvite(userId, object : FriendInvitesImplementation.FriendRequestActionCallback{
+            override fun onComplete() {
+                getFriendRequests()
+            }
+        })
     }
 
     fun declineFriendRequest(userId : String){

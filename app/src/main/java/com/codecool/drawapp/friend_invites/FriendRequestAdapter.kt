@@ -23,5 +23,6 @@ class FriendRequestAdapter(private val users : List<User>, private val layoutInf
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.name_space.text = users.get(position).userName
         holder.itemView.decline_btn.setOnClickListener{ view.declineFriendRequest(users.get(position).userId) }
+        holder.itemView.accept_btn.setOnClickListener{view.acceptFriendRequest(users.get(position).userId)}
     }
 }

@@ -105,4 +105,57 @@ class FriendInvitesImplementation : FriendInvitesService, KoinComponent {
             }
         })
     }
+
+    override fun acceptFriendInvite(userId: String, view: FriendRequestActionCallback) {
+        basicDatabaseQueryService.getMyUserFromDatabase(object : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
+            override fun onFail() {
+                view.onComplete()
+            }
+
+            override fun onSuccess(myUser: User) {
+                ProjectDatabase.FIREBASE_DB.getReference("friendRequests").addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onCancelled(error: DatabaseError) {
+                        view.onComplete()
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if ( snapshot.exists()){
+                            val filteredList = snapshot.children.filter{ val invite = it.getValue(FriendInvite::class.java)!!
+                                invite.toId == myUser.userId && invite.fromId == userId }
+                            val theInvite = filteredList.map{it.getValue(FriendInvite::class.java)!!}
+
+                            if  (theInvite.isNotEmpty()){
+                                // Delete the friend request from database
+                                ProjectDatabase.FIREBASE_DB.getReference("friendRequests").child(filteredList[0].key.toString()).removeValue()
+
+                                // Add the user's friendlist the target and reverse
+                                basicDatabaseQueryService.getUserById(theInvite[0].fromId, object : BasicDatabaseQueries.GetUserByIdCallback{
+                                    override fun onComplete(targetUser: User) {
+                                        //To Current character list the target
+                                        val root = ProjectDatabase.FIREBASE_DB.getReference("friends").child(myUser.userId)
+                                        val key = root.push().key.toString()
+                                        root.child(key).setValue(targetUser)
+
+                                        // To target character's list the current
+                                        val root2 = ProjectDatabase.FIREBASE_DB.getReference("friends").child(targetUser.userId)
+                                        val key2 = root2.push().key.toString()
+                                        root2.child(key2).setValue(myUser).addOnCompleteListener {
+                                            view.onComplete()
+                                        }
+                                    }
+
+                                    override fun onError() {
+                                        view.onComplete()
+                                    }
+                                })
+
+                            } else {
+                                view.onComplete()
+                            }
+                        }
+                    }
+                })
+            }
+        })
+    }
 }
