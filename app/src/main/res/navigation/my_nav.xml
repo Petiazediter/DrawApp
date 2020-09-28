@@ -84,5 +84,11 @@
         android:id="@+id/lobbyFragment"
         android:name="com.codecool.drawapp.lobby_fragment.LobbyFragment"
         android:label="fragment_lobby"
-        tools:layout="@layout/fragment_lobby" />
+        tools:layout="@layout/fragment_lobby" >
+        <action
+            android:id="@+id/action_lobbyFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment"
+            app:popUpTo="@id/lobbyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 
 
@@ -18,5 +19,9 @@ class LobbyFragment : Fragment(), LobbyContractor {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = LobbyPresenter(this)
+    }
+
+    override fun onFail() {
+        findNavController().navigate(R.id.action_lobbyFragment_to_mainMenuFragment)
     }
 }
