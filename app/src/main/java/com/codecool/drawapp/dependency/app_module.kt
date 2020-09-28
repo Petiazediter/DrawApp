@@ -23,5 +23,5 @@ val appModule = module{
     single<AddFriendService>{ AddFriendImplementation()}
     single<BasicDatabaseQueryService>{ BasicDatabaseQueries()}
     single<FriendInvitesService>{ FriendInvitesImplementation()}
-    single<LobbyService>{ LobbyImplementation()}
+    single<LobbyService>{ LobbyImplementation() }
 }
