@@ -24,5 +24,8 @@ class MainMenuFragment : Fragment() {
         notification_button.setOnClickListener{
             ProjectDatabase.FIREBASE_AUTH.signOut()
             findNavController().navigate(R.id.action_mainMenuFragment_to_loadingFragment)}
+
+        create_game.setOnClickListener {
+            findNavController().navigate(R.id.action_mainMenuFragment_to_lobbyFragment)}
     }
 }

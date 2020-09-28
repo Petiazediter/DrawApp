@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_friendsFragment"
             app:destination="@id/friendsFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_lobbyFragment"
+            app:destination="@id/lobbyFragment" />
     </fragment>
     <fragment
         android:id="@+id/friendsFragment"
@@ -77,4 +80,9 @@
         android:name="com.codecool.drawapp.friend_invites.InvitesFragment"
         android:label="fragment_invites"
         tools:layout="@layout/fragment_invites" />
+    <fragment
+        android:id="@+id/lobbyFragment"
+        android:name="com.codecool.drawapp.lobby_fragment.LobbyFragment"
+        android:label="fragment_lobby"
+        tools:layout="@layout/fragment_lobby" />
 </navigation>

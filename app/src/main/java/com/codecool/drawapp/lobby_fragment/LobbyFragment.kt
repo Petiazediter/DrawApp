@@ -8,10 +8,15 @@ import android.view.ViewGroup
 import com.codecool.drawapp.R
 
 
-class LobbyFragment : Fragment() {
-
+class LobbyFragment : Fragment(), LobbyContractor {
+    lateinit var presenter: LobbyPresenter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lobby, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter = LobbyPresenter(this)
     }
 }

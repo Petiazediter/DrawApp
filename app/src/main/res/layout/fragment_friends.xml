@@ -16,6 +16,8 @@
          layout="@layout/login_logo"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:foreground="@drawable/friends_bg"
+        android:background="@color/purple"
         android:visibility="invisible"
         tools:visibility="visible"
         android:id="@+id/recycler"

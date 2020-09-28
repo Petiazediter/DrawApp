@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/edit_bg"
-    android:backgroundTint="@color/yellowDark"
-    android:padding="10dp"
+    android:background="@color/yellowDark"
+    android:layout_margin="10dp"
     android:layout_height="wrap_content">
 
     <TextView
