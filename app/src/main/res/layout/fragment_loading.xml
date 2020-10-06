@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/transparent"
-    tools:background="@drawable/ic_svg_bg"
     tools:context=".loading_fragment.LoadingFragment">
 
     <ProgressBar
@@ -16,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:indeterminateTint="@android:color/white"
+        android:indeterminateTint="#BDE5FF"
         android:indeterminateDrawable="@drawable/rotate_setting"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -28,10 +26,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/checking_for_account_data"
-        style="@style/ShadowText"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/roboto_bold"
+        android:textColor="#BDE5FF"
+        android:fontFamily="@font/roboto_regular"
         android:textSize="25sp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_waves"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

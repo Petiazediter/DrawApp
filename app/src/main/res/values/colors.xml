@@ -26,4 +26,6 @@
     <color name="cyanDark">#0fb9b1</color>
 
     <color name="activity_bg">#eb3b5a</color>
+
+    <color name="wave_blue">#0099FF</color>
 </resources>
