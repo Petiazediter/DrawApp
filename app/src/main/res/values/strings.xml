@@ -19,4 +19,5 @@
     <string name="accept_button_for_friend_invite">Accept button for friend invite</string>
     <string name="decline_button_for_friend_inve">Decline button for friend inve</string>
     <string name="join">Join</string>
+    <string name="i_already_have_an_account">I already have an account!</string>
 </resources>

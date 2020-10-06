@@ -39,11 +39,13 @@ class RegisterFragment : Fragment(), RegisterContractor {
 
     private fun hideEdit(){
         edit_layout.visibility = View.INVISIBLE
+        sign_in_button.visibility = View.INVISIBLE
         loading_bar.visibility = View.VISIBLE
     }
 
     private fun showEdit(){
         edit_layout.visibility = View.VISIBLE
+        sign_in_button.visibility = View.VISIBLE
         loading_bar.visibility = View.INVISIBLE
     }
 
