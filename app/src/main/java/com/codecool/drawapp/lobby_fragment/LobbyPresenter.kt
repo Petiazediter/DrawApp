@@ -15,7 +15,7 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
             }
 
             override fun onSuccess() {
-                TODO("Not yet implemented")
+                view.onSuccess()
             }
         })
     }

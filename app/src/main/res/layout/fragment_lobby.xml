@@ -28,6 +28,50 @@
         android:indeterminateDrawable="@drawable/rotate_setting"
         android:indeterminateTint="@android:color/white"/>
 
+    <LinearLayout
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:layout_margin="20dp"
+        android:id="@+id/loaded_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@id/logo_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="vertical">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/joinedPlayers"
+            android:foreground="@drawable/friends_bg"
+            android:background="@color/purple"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"/>
+
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/startGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/GreenButton"
+            android:layout_weight="0"
+            android:text="Start Game"
+            android:textSize="22sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:id="@+id/friendsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@drawable/friends_bg"
+            android:background="@color/purple"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

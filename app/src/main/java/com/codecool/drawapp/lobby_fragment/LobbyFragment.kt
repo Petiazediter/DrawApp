@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
+import kotlinx.android.synthetic.main.fragment_invites.*
+import kotlinx.android.synthetic.main.fragment_invites.loading_bar
+import kotlinx.android.synthetic.main.fragment_lobby.*
 
 
 class LobbyFragment : Fragment(), LobbyContractor {
@@ -19,9 +22,16 @@ class LobbyFragment : Fragment(), LobbyContractor {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = LobbyPresenter(this)
+        presenter.createGame()
     }
 
     override fun onFail() {
+        // Failed to create a game
         findNavController().navigate(R.id.action_lobbyFragment_to_mainMenuFragment)
+    }
+
+    override fun onSuccess() {
+        // Success game create
+        loading_bar.visibility = View.INVISIBLE
     }
 }
