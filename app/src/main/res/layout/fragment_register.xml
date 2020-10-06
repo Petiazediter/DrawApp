@@ -105,23 +105,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_waves"
-        app:layout_constraintBottom_toTopOf="@id/sign_in_button"
+        app:layout_constraintBottom_toTopOf="@id/sign_in_button_layout"
         android:scaleType="fitXY"/>
 
-    <TextView
-        android:padding="12dp"
-        android:id="@+id/sign_in_button"
+    <LinearLayout
+        android:id="@+id/sign_in_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:background="#0099FF"
+        app:layout_constraintRight_toRightOf="parent">
+    <TextView
+        android:padding="20dp"
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
         android:textColor="@android:color/white"
         android:gravity="center"
         android:textSize="16sp"
         android:text="@string/i_already_have_an_account"/>
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/loading_bar"

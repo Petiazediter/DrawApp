@@ -73,24 +73,29 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_waves"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_button"
+        app:layout_constraintBottom_toTopOf="@id/sign_up_button_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:padding="20dp"
-            android:background="#0099FF"
-            android:id="@+id/sign_up_button"
+        <LinearLayout
+            android:id="@+id/sign_up_button_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/roboto_regular"
-            android:textSize="16sp"
-            android:text="I don't have an account yet!"/>
+            android:background="#0099FF"
+            app:layout_constraintRight_toRightOf="parent">
+            <TextView
+                android:padding="20dp"
+                android:id="@+id/sign_up_button"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="16sp"
+                android:text="I don't have an account yet!"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+        </LinearLayout>
 
     <ProgressBar
         android:id="@+id/loading_bar"
