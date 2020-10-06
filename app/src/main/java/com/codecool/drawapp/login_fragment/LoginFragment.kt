@@ -32,11 +32,13 @@ class LoginFragment : Fragment(), LoginContractor {
 
     private fun hideEdit(){
         edit_layout.visibility = View.INVISIBLE
+        sign_up_button.visibility = View.INVISIBLE
         loading_bar.visibility = View.VISIBLE
     }
 
     private fun showEdit(){
         edit_layout.visibility = View.VISIBLE
+        sign_up_button.visibility = View.VISIBLE
         loading_bar.visibility = View.INVISIBLE
     }
 
