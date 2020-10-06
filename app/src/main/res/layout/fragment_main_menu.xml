@@ -4,90 +4,145 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/purpleDark"
     tools:context=".main_page_fragment.MainMenuFragment">
 
-    <LinearLayout
-        android:id="@+id/toolBar"
+    <ImageView
+        android:id="@+id/waves"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:padding="15dp"
-        android:orientation="horizontal"
-        android:background="@color/purple"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <ImageView
-            android:id="@+id/settings_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_settings_24"
-            app:tint="@android:color/white"/>
-
-        <ImageView
-            android:id="@+id/notification_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:src="@drawable/ic_baseline_notification_important_24"/>
-    </LinearLayout>
-    <TextView
-
-        android:id="@+id/welcomeMessage"
+        android:src="@drawable/ic_waves"/>
+    <GridLayout
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="Welcome back"
-        android:fontFamily="@font/roboto_bold"
-        android:textColor="@android:color/white"
-        android:textSize="40sp"
-        style="@style/ShadowText" />
-
-    <TextView
-        android:id="@+id/usernameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:fontFamily="@font/roboto_bold"
-        android:textColor="@color/yellowDark"
-        android:textSize="40sp"
-        style="@style/ShadowText"
-        tools:text="username"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/toolBar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernameText"
+        android:layout_height="0dp"
         app:layout_constrainedHeight="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_margin="40dp">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/waves"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:columnCount="2">
 
-            <Button
-                android:id="@+id/create_game"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/GreenButton"
-                android:layout_margin="10dp"
-                android:text="Create Game"
-                android:textSize="25sp"/>
+        <androidx.cardview.widget.CardView
+            android:layout_margin="10dp"
+            android:id="@+id/create_game"
+            app:cardCornerRadius="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/friends"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/OrangeButton"
-                android:text="Friends"
-                android:textSize="25sp"/>
-    </LinearLayout>
+                android:orientation="vertical">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_baseline_videogame_asset_24"
+                    app:tint="@color/wave_blue" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Host Game"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/wave_blue"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="10dp"
+            android:id="@+id/friends"
+            app:cardCornerRadius="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_baseline_person_24"
+                    app:tint="@color/wave_blue" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Friends"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/wave_blue"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="10dp"
+            android:id="@+id/settings_button"
+            app:cardCornerRadius="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_baseline_settings_24"
+                    app:tint="@color/wave_blue" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Settings"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/wave_blue"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="10dp"
+            android:id="@+id/log_out_button"
+            app:cardCornerRadius="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_logout"
+                    app:tint="@color/wave_blue" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Log Out"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/wave_blue"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
