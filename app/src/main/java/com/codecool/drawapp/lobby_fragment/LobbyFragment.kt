@@ -51,6 +51,6 @@ class LobbyFragment : Fragment(), LobbyContractor {
 
     override fun onDestroy() {
         super.onDestroy()
-        git
+
     }
 }
