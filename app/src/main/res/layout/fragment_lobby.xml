@@ -2,19 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/ic_svg_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".lobby_fragment.LobbyFragment">
 
-    <include
-        android:id="@+id/logo_layout"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/view_img"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        layout="@layout/login_logo"/>
+        android:scaleType="fitXY"
+        android:rotation="180"
+        android:src="@drawable/ic_waves"/>
 
     <ProgressBar
         android:id="@+id/loading_bar"
@@ -26,52 +26,80 @@
         app:layout_constraintRight_toRightOf="parent"
         android:indeterminate="true"
         android:indeterminateDrawable="@drawable/rotate_setting"
-        android:indeterminateTint="@android:color/white"/>
+        android:indeterminateTint="@color/blueDark"/>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/room_code"
         android:visibility="invisible"
-        tools:visibility="visible"
         android:layout_margin="20dp"
-        android:id="@+id/loaded_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintTop_toBottomOf="@id/logo_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/view_img"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:orientation="vertical">
+        tools:text="QWSDFE2D"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/room_code"
+        android:text="/"/>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/current_players"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="32sp"
+        app:layout_constraintRight_toLeftOf="@id/mid"
+        app:layout_constraintTop_toTopOf="@id/mid"
+        app:layout_constraintBottom_toBottomOf="@id/mid"/>
+
+    <TextView
+        android:id="@+id/max_players"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toRightOf="@id/mid"
+        app:layout_constraintTop_toTopOf="@id/mid"
+        app:layout_constraintBottom_toBottomOf="@id/mid"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/joinedPlayers"
-            android:foreground="@drawable/friends_bg"
-            android:background="@color/purple"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"/>
-
-        <Button
-            android:layout_margin="10dp"
-            android:id="@+id/startGame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/GreenButton"
-            android:layout_weight="0"
-            android:text="Start Game"
-            android:textSize="22sp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:layout_weight="0.5"
+            android:visibility="invisible"
             android:id="@+id/friendsRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="@drawable/friends_bg"
-            android:background="@color/purple"/>
+            android:layout_margin="20dp"
+            android:layout_height="0dp"
+            app:layout_constrainedHeight="true"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/startGame"
+            app:layout_constraintTop_toBottomOf="@id/current_players"/>
 
-    </LinearLayout>
+        <Button
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/startGame"
+            style="@style/BlueButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Start Game"
+            android:textSize="22sp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

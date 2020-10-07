@@ -33,5 +33,11 @@ class LobbyFragment : Fragment(), LobbyContractor {
     override fun onSuccess() {
         // Success game create
         loading_bar.visibility = View.INVISIBLE
+        room_code.visibility = View.VISIBLE
+        mid.visibility = View.VISIBLE
+        current_players.visibility = View.VISIBLE
+        max_players.visibility = View.VISIBLE
+        friendsRecycler.visibility = View.VISIBLE
+        startGame.visibility = View.VISIBLE
     }
 }
