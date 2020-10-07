@@ -1,5 +1,6 @@
 package com.codecool.drawapp.lobby_fragment
 
+import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.LobbyImplementation
 import com.codecool.drawapp.dependency.lobby.LobbyService
 import org.koin.core.KoinComponent
@@ -14,8 +15,8 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
                 view.onFail()
             }
 
-            override fun onSuccess() {
-                view.onSuccess()
+            override fun onSuccess(gameLobby: GameLobby) {
+                view.onSuccess(gameLobby)
             }
         })
     }

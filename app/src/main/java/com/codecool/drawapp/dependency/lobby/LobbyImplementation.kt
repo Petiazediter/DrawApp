@@ -13,7 +13,7 @@ class LobbyImplementation : LobbyService,KoinComponent {
 
     interface GameCallback{
         fun onFail()
-        fun onSuccess()
+        fun onSuccess(gameLobby: GameLobby)
     }
 
     override fun createGame(view: GameCallback) {
@@ -27,7 +27,7 @@ class LobbyImplementation : LobbyService,KoinComponent {
                 val newGameId = gamesReference.push().key.toString()
                 val newGame = GameLobby(newGameId, user.userId, listOf(user),0)
                 gamesReference.child(newGameId).setValue(newGame).addOnCompleteListener {
-                    if ( it.isSuccessful) view.onSuccess()
+                    if ( it.isSuccessful) view.onSuccess(newGame)
                     else view.onFail()
                 }
             }

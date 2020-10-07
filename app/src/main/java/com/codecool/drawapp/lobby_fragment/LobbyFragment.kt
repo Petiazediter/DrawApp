@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
+import com.codecool.drawapp.data_layer.GameLobby
 import kotlinx.android.synthetic.main.fragment_invites.*
 import kotlinx.android.synthetic.main.fragment_invites.loading_bar
 import kotlinx.android.synthetic.main.fragment_lobby.*
 
 
 class LobbyFragment : Fragment(), LobbyContractor {
+
     lateinit var presenter: LobbyPresenter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lobby, container, false)
@@ -30,14 +33,24 @@ class LobbyFragment : Fragment(), LobbyContractor {
         findNavController().navigate(R.id.action_lobbyFragment_to_mainMenuFragment)
     }
 
-    override fun onSuccess() {
+    override fun onSuccess(gameLobby : GameLobby) {
         // Success game create
         loading_bar.visibility = View.INVISIBLE
-        room_code.visibility = View.VISIBLE
         mid.visibility = View.VISIBLE
-        current_players.visibility = View.VISIBLE
         max_players.visibility = View.VISIBLE
+
+        room_code.visibility = View.VISIBLE
+        room_code.text = "#"+gameLobby.gameId.substring(1,7)
+
+        current_players.visibility = View.VISIBLE
+        current_players.text = gameLobby.players.size.toString()
+
         friendsRecycler.visibility = View.VISIBLE
         startGame.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        git
     }
 }

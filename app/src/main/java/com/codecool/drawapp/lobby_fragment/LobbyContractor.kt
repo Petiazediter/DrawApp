@@ -1,6 +1,8 @@
 package com.codecool.drawapp.lobby_fragment
 
+import com.codecool.drawapp.data_layer.GameLobby
+
 interface LobbyContractor {
     fun onFail()
-    fun onSuccess()
+    fun onSuccess(gameLobby: GameLobby)
 }
