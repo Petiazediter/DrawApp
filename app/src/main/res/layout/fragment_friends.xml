@@ -4,26 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".friends_fragment.FriendsFragment"
-    android:background="@drawable/ic_svg_bg">
+    tools:context=".friends_fragment.FriendsFragment">
 
-     <include
-         android:id="@+id/logo_layout"
-         app:layout_constraintTop_toTopOf="parent"
-         app:layout_constraintLeft_toLeftOf="parent"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         layout="@layout/login_logo"/>
+    <ImageView
+        android:id="@+id/waves"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_waves"
+        android:rotation="180"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:foreground="@drawable/friends_bg"
-        android:background="@color/purple"
         android:visibility="invisible"
         tools:visibility="visible"
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/logo_layout"
+        app:layout_constraintTop_toBottomOf="@id/waves"
         app:layout_constraintBottom_toTopOf="@id/my_invites"
         app:layout_constrainedHeight="true"
         android:layout_margin="10dp"
@@ -34,12 +33,12 @@
         android:id="@+id/loading_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/logo_layout"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:indeterminateDrawable="@drawable/rotate_setting"
-        android:indeterminateTint="@android:color/white"
+        android:indeterminateTint="@color/wave_blue"
         android:indeterminate="true"/>
 
     <TextView
