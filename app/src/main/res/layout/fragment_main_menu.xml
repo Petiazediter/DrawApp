@@ -57,6 +57,36 @@
 
         <androidx.cardview.widget.CardView
             android:layout_margin="10dp"
+            android:id="@+id/join_game_button"
+            app:cardCornerRadius="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_outline_language_24"
+                    app:tint="@color/wave_blue" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Join Game"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/wave_blue"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="10dp"
             android:id="@+id/friends"
             app:cardCornerRadius="10dp"
             android:layout_width="wrap_content"
@@ -85,35 +115,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
-            android:id="@+id/settings_button"
-            app:cardCornerRadius="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:padding="10dp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_baseline_settings_24"
-                    app:tint="@color/wave_blue" />
-
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Settings"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textColor="@color/wave_blue"/>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_margin="10dp"
