@@ -32,10 +32,12 @@ class FriendsFragment : Fragment(), FriendsContractor {
     }
 
     override fun displayRecycler(list: List<User>) {
-        recycler.adapter = FriendsAdapter(list, LayoutInflater.from(requireContext()),this)
-        recycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL, false)
-        recycler.visibility = View.VISIBLE
-        loading_bar.visibility = View.INVISIBLE
+        context?.let{
+            recycler.adapter = FriendsAdapter(list, LayoutInflater.from(it),this)
+            recycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL, false)
+            recycler.visibility = View.VISIBLE
+            loading_bar.visibility = View.INVISIBLE
+        }
     }
 
     override fun emptyRecycler() {

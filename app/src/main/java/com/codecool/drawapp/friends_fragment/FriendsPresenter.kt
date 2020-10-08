@@ -16,6 +16,4 @@ class FriendsPresenter(val view : FriendsContractor) : KoinComponent {
             }
         })
     }
-
-
 }
