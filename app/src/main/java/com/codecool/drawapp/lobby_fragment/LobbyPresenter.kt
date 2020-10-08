@@ -21,17 +21,21 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
 
             override fun onSuccess(gameLobby: GameLobby) {
                 view.onSuccess(gameLobby)
-                val theLobby : Pair<DatabaseReference, ValueEventListener> = lobbyService.attachLobby(gameLobby.gameId, object : LobbyImplementation.GameUpdateCallback{
-                    override fun onLobbyChange(lobby: GameLobby) {
-                        myLobby = lobby
-                        if (gameLobby.gameLeader !in gameLobby.players.map { it.userId }) {
-                            quitLobby()
-                        }
-                    }
-                })
-                listeners = theLobby
+                listeners = attachLobby(gameLobby)
             }
         })
+    }
+
+    private fun attachLobby (gameLobby : GameLobby) : Pair<DatabaseReference,ValueEventListener> {
+        val theLobby : Pair<DatabaseReference, ValueEventListener> = lobbyService.attachLobby(gameLobby.gameId, object : LobbyImplementation.GameUpdateCallback{
+            override fun onLobbyChange(lobby: GameLobby) {
+                myLobby = lobby
+                if (gameLobby.gameLeader !in gameLobby.players.map { it.userId }) {
+                    quitLobby()
+                }
+            }
+        })
+        return theLobby
     }
 
     fun quitLobby(){
@@ -43,6 +47,15 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
     }
 
     fun joinGame ( lobbyId : String ){
-        
+        lobbyService.joinLobby(lobbyId,object : LobbyImplementation.JoinLobbyCallback{
+            override fun onError() {
+                view.onFail()
+            }
+
+            override fun onSuccess(gameLobby: GameLobby) {
+                view.onSuccess(gameLobby)
+                listeners = attachLobby(gameLobby)
+            }
+        })
     }
 }

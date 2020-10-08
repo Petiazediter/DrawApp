@@ -91,4 +91,36 @@ class LobbyImplementation : LobbyService,KoinComponent {
             }
         })
     }
+
+    interface JoinLobbyCallback {
+        fun onError()
+        fun onSuccess(gameLobby: GameLobby)
+    }
+
+    override fun joinLobby(lobbyId: String, view : JoinLobbyCallback) {
+        val games = ProjectDatabase.FIREBASE_DB.getReference("games")
+        games.addListenerForSingleValueEvent( object  : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if ( snapshot.exists()){
+                    val list = snapshot.children.filter{it.key?.substring(1,7)?.toLowerCase() == lobbyId.toLowerCase()}
+                    if ( list.isNullOrEmpty()) view.onError()
+                    else list[0].getValue(GameLobby::class.java)?.let{view.onSuccess(it)} ?: run{view.onError()}
+                }else view.onError()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                view.onError()
+            }
+        })
+
+        /*val theGame = ProjectDatabase.FIREBASE_DB.getReference("games").child(lobbyId)
+        theGame.addListenerForSingleValueEvent( object   : ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {}
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if ( snapshot.exists()) snapshot.getValue(GameLobby::class.java)?.let{view.onSuccess(it)} ?: run {view.onError()}
+                else view.onError()
+            }
+        }) */
+    }
 }

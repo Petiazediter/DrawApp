@@ -37,7 +37,7 @@ class LobbyFragment : Fragment(), LobbyContractor {
     }
 
     override fun onFail() {
-        // Failed to create a game
+        // Failed to create a game or to join one
         findNavController().navigate(R.id.action_lobbyFragment_to_mainMenuFragment)
     }
 
