@@ -26,5 +26,8 @@ class MainMenuFragment : Fragment() {
 
         create_game.setOnClickListener {
             findNavController().navigate(R.id.action_mainMenuFragment_to_lobbyFragment)}
+
+        join_game_button.setOnClickListener{
+            findNavController().navigate(R.id.action_mainMenuFragment_to_joinGameFragment)}
     }
 }

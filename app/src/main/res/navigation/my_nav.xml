@@ -65,6 +65,11 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_lobbyFragment"
             app:destination="@id/lobbyFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_joinGameFragment"
+            app:destination="@id/joinGameFragment"
+            app:popUpTo="@id/joinGameFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/friendsFragment"
@@ -91,4 +96,9 @@
             app:popUpTo="@id/lobbyFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/joinGameFragment"
+        android:name="com.codecool.drawapp.join_game_fragment.JoinGameFragment"
+        android:label="fragment_join_game"
+        tools:layout="@layout/fragment_join_game" />
 </navigation>
