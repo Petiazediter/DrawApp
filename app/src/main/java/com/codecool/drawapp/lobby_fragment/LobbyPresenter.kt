@@ -1,5 +1,6 @@
 package com.codecool.drawapp.lobby_fragment
 
+import android.util.Log
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.LobbyImplementation
 import com.codecool.drawapp.dependency.lobby.LobbyService
@@ -33,7 +34,8 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
                 if (gameLobby.gameLeader !in gameLobby.players.map { it.userId }) {
                     quitLobby()
                 }
-                view.onSuccess(lobby)
+                if ( lobby.round == 0) view.onSuccess(lobby)
+                else view.moveToGameView(lobby)
             }
 
             override fun onLobbyDeleted() {
@@ -64,5 +66,19 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
                 listeners = attachLobby(gameLobby)
             }
         })
+    }
+
+    fun startGame(){
+        myLobby?.let{lobby ->
+            lobbyService.startLobby(lobby,object : LobbyImplementation.StartLobbyCallback{
+                override fun onError(errorMsg: String) {
+                    Log.d("LobbyPresenter", "startGame() -> Error (# $errorMsg )")
+                }
+
+                override fun onSuccess() {
+                    Log.d("LobbyPresenter", "startGame() -> Success!")
+                }
+            })
+        }
     }
 }

@@ -48,7 +48,11 @@ class LobbyFragment : Fragment(), LobbyContractor {
         current_players.text = gameLobby.players.size.toString()
 
         friendsRecycler.visibility = View.VISIBLE
+
         startGame.visibility = View.VISIBLE
+        startGame.setOnClickListener{
+            presenter.startGame()
+        }
     }
 
     override fun onDestroy() {
@@ -58,5 +62,9 @@ class LobbyFragment : Fragment(), LobbyContractor {
 
     override fun changeLobby(gameLobby: GameLobby) {
         current_players.text = gameLobby.players.size.toString()
+    }
+
+    override fun moveToGameView(gameLobby: GameLobby) {
+        findNavController().navigate(R.id.action_lobbyFragment_to_gameView)
     }
 }

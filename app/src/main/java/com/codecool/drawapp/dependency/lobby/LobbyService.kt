@@ -10,4 +10,5 @@ interface LobbyService {
     fun detachLobby(lobbyRow: DatabaseReference, valueEventListener: ValueEventListener)
     fun quitLobby(lobby: GameLobby)
     fun joinLobby ( lobbyId : String, view : LobbyImplementation.JoinLobbyCallback)
+    fun startLobby ( lobby : GameLobby, view : LobbyImplementation.StartLobbyCallback)
 }
