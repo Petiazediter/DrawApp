@@ -35,6 +35,11 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
                 }
                 view.onSuccess(lobby)
             }
+
+            override fun onLobbyDeleted() {
+                quitLobby()
+                view.onFail()
+            }
         })
         return theLobby
     }
@@ -44,6 +49,8 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
             lobbyService.detachLobby(it.first,it.second)
             myLobby?.let { lobbyService.quitLobby(it) }
         }
+        myLobby = null
+        listeners = null
     }
 
     fun joinGame ( lobbyId : String ){

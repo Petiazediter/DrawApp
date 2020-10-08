@@ -41,6 +41,7 @@ class LobbyImplementation : LobbyService,KoinComponent {
 
     interface GameUpdateCallback {
         fun onLobbyChange(lobby : GameLobby)
+        fun onLobbyDeleted()
     }
 
     override fun attachLobby(lobbyId : String, view: GameUpdateCallback) : Pair<DatabaseReference,ValueEventListener> {
@@ -51,6 +52,8 @@ class LobbyImplementation : LobbyService,KoinComponent {
                     Log.d("Changed", "CHANGED CHANGED CHANGED CHANGED CHANGED")
                     val gameLobby = snapshot.getValue(GameLobby::class.java)
                     gameLobby?.let { view.onLobbyChange(gameLobby) }
+                } else {
+                    view.onLobbyDeleted()
                 }
             }
 
