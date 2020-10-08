@@ -35,7 +35,12 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
                     quitLobby()
                 }
                 if ( lobby.round == 0) view.onSuccess(lobby)
-                else view.moveToGameView(lobby)
+                else {
+                    view.moveToGameView(lobby)
+                    listeners?.let{
+                        lobbyService.detachLobby(it.first,it.second)
+                    }
+                }
             }
 
             override fun onLobbyDeleted() {

@@ -98,8 +98,7 @@
         <action
             android:id="@+id/action_lobbyFragment_to_gameView"
             app:destination="@id/gameView"
-            app:popUpTo="@id/lobbyFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
 
     </fragment>
     <fragment
@@ -123,5 +122,11 @@
         android:id="@+id/gameView"
         android:name="com.codecool.drawapp.game_view.GameView"
         android:label="fragment_game_view"
-        tools:layout="@layout/fragment_game_view" />
+        tools:layout="@layout/fragment_game_view" >
+        <action
+            android:id="@+id/action_gameView_to_lobbyFragment"
+            app:destination="@id/lobbyFragment"
+            app:popUpTo="@id/gameView"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
