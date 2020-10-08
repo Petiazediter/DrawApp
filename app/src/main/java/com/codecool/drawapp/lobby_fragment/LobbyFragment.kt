@@ -51,6 +51,14 @@ class LobbyFragment : Fragment(), LobbyContractor {
 
     override fun onDestroy() {
         super.onDestroy()
+        presenter.quitLobby()
+    }
 
+    override fun changeLobby(gameLobby: GameLobby) {
+        current_players.text = gameLobby.players.size.toString()
+    }
+
+    override fun quitToMenu() {
+        findNavController().popBackStack()
     }
 }
