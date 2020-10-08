@@ -1,6 +1,7 @@
 package com.codecool.drawapp.lobby_fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,14 @@ class LobbyFragment : Fragment(), LobbyContractor {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = LobbyPresenter(this)
-        presenter.createGame()
+        val lobbyId : String? = arguments?.getString("lobbyId")
+        lobbyId?.let{
+            Log.d("LobbyFragment()","lobbyId : $lobbyId")
+            presenter.joinGame(it)
+        } ?: run {
+            Log.d("LobbyFragment", "Created()")
+            presenter.createGame()
+        }
     }
 
     override fun onFail() {

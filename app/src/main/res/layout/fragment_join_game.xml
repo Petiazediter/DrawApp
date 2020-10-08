@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Code"
+                android:fontFamily="@font/roboto_bold"
                 android:drawableLeft="@drawable/ic_hashtag_symbol"
                 android:drawableTint="@color/wave_blue"
                 android:drawablePadding="10dp"
@@ -45,6 +46,7 @@
                 android:background="@drawable/edit_bg"/>
 
             <Button
+                android:id="@+id/submit_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Join Game"

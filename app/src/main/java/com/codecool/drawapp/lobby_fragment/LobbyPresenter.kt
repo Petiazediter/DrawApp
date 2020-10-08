@@ -41,4 +41,8 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
         }
         view.quitToMenu()
     }
+
+    fun joinGame ( lobbyId : String ){
+        
+    }
 }
