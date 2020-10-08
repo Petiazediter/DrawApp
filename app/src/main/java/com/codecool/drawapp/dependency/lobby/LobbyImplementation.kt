@@ -30,7 +30,7 @@ class LobbyImplementation : LobbyService,KoinComponent {
             override fun onSuccess(user: User) {
                 val gamesReference = ProjectDatabase.FIREBASE_DB.getReference("games")
                 val newGameId = gamesReference.push().key.toString()
-                val newGame = GameLobby(newGameId, user.userId, listOf(user),0)
+                val newGame = GameLobby(newGameId, user.userId, arrayListOf(user),0)
                 gamesReference.child(newGameId).setValue(newGame).addOnCompleteListener {
                     if ( it.isSuccessful) view.onSuccess(newGame)
                     else view.onFail()
@@ -48,6 +48,7 @@ class LobbyImplementation : LobbyService,KoinComponent {
         val valueEventListener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
+                    Log.d("Changed", "CHANGED CHANGED CHANGED CHANGED CHANGED")
                     val gameLobby = snapshot.getValue(GameLobby::class.java)
                     gameLobby?.let { view.onLobbyChange(gameLobby) }
                 }
@@ -80,8 +81,8 @@ class LobbyImplementation : LobbyService,KoinComponent {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
                             snapshot.getValue(GameLobby::class.java)?.let {
-                                val list = it.players.filter { user -> user.userId != mUser.userId }
-                                it.players = list
+                                it.players = it.players.filter { user -> user.userId != mUser.userId } as ArrayList<User>
+                                theGame.setValue(it)
                                 if ( it.gameLeader !in it.players.map{it.userId} ) theGame.removeValue()
                                 else theGame.setValue(it)
                             }
@@ -98,29 +99,34 @@ class LobbyImplementation : LobbyService,KoinComponent {
     }
 
     override fun joinLobby(lobbyId: String, view : JoinLobbyCallback) {
-        val games = ProjectDatabase.FIREBASE_DB.getReference("games")
-        games.addListenerForSingleValueEvent( object  : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if ( snapshot.exists()){
-                    val list = snapshot.children.filter{it.key?.substring(1,7)?.toLowerCase() == lobbyId.toLowerCase()}
-                    if ( list.isNullOrEmpty()) view.onError()
-                    else list[0].getValue(GameLobby::class.java)?.let{view.onSuccess(it)} ?: run{view.onError()}
-                }else view.onError()
-            }
 
-            override fun onCancelled(error: DatabaseError) {
+        basicDatabaseQueryService.getMyUserFromDatabase(object : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
+            override fun onFail() {
                 view.onError()
             }
-        })
 
-        /*val theGame = ProjectDatabase.FIREBASE_DB.getReference("games").child(lobbyId)
-        theGame.addListenerForSingleValueEvent( object   : ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {}
+            override fun onSuccess(user: User) {
+                val games = ProjectDatabase.FIREBASE_DB.getReference("games")
+                games.addListenerForSingleValueEvent( object  : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if ( snapshot.exists()){
+                            val list = snapshot.children.filter{it.key?.substring(1,7)?.toLowerCase() == lobbyId.toLowerCase()}
+                            if ( list.isNullOrEmpty()) view.onError()
+                            else list[0].getValue(GameLobby::class.java)?.let{
+                                if ( it.round == 0 && (user !in it.players)) {
+                                    it.players.add(user)
+                                    games.child(it.gameId).setValue(it)
+                                    view.onSuccess(it)
+                                } else view.onError()
+                            } ?: run{view.onError()}
+                        }else view.onError()
+                    }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if ( snapshot.exists()) snapshot.getValue(GameLobby::class.java)?.let{view.onSuccess(it)} ?: run {view.onError()}
-                else view.onError()
+                    override fun onCancelled(error: DatabaseError) {
+                        view.onError()
+                    }
+                })
             }
-        }) */
+        })
     }
 }

@@ -108,5 +108,10 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popUpTo="@id/joinGameFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_joinGameFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment"
+            app:popUpTo="@id/joinGameFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

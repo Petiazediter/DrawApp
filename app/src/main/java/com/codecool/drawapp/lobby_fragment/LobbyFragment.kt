@@ -27,13 +27,7 @@ class LobbyFragment : Fragment(), LobbyContractor {
         super.onViewCreated(view, savedInstanceState)
         presenter = LobbyPresenter(this)
         val lobbyId : String? = arguments?.getString("lobbyId")
-        lobbyId?.let{
-            Log.d("LobbyFragment()","lobbyId : $lobbyId")
-            presenter.joinGame(it)
-        } ?: run {
-            Log.d("LobbyFragment", "Created()")
-            presenter.createGame()
-        }
+        lobbyId?.let{ presenter.joinGame(it) } ?: run {presenter.createGame()}
     }
 
     override fun onFail() {
@@ -64,9 +58,5 @@ class LobbyFragment : Fragment(), LobbyContractor {
 
     override fun changeLobby(gameLobby: GameLobby) {
         current_players.text = gameLobby.players.size.toString()
-    }
-
-    override fun quitToMenu() {
-        findNavController().popBackStack()
     }
 }

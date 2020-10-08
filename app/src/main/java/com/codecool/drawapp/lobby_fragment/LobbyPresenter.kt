@@ -33,6 +33,7 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
                 if (gameLobby.gameLeader !in gameLobby.players.map { it.userId }) {
                     quitLobby()
                 }
+                view.onSuccess(lobby)
             }
         })
         return theLobby
@@ -43,7 +44,6 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
             lobbyService.detachLobby(it.first,it.second)
             myLobby?.let { lobbyService.quitLobby(it) }
         }
-        view.quitToMenu()
     }
 
     fun joinGame ( lobbyId : String ){

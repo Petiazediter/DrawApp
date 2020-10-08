@@ -6,5 +6,5 @@ interface LobbyContractor {
     fun onFail()
     fun onSuccess(gameLobby: GameLobby)
     fun changeLobby ( gameLobby: GameLobby)
-    fun quitToMenu()
+
 }
