@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
+import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
 
 class GameView : Fragment(), GameContractor {
 
@@ -25,6 +26,7 @@ class GameView : Fragment(), GameContractor {
             val gameLobby = it.getString("gameId")
             gameLobby?.let{
                 presenter = GamePresenter(this)
+                buildRound()
             } ?: run {
                 Log.d( "GameView", "onViewCreated() -> No gameId argument!")
                 findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
@@ -33,5 +35,11 @@ class GameView : Fragment(), GameContractor {
             findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
     }
 
+    private fun buildRound(){
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, DrawFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
 
 }
