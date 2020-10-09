@@ -33,4 +33,5 @@ class GameView : Fragment(), GameContractor {
             findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
     }
 
+
 }
