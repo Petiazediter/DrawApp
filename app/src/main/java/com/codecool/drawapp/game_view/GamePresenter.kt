@@ -1,4 +1,4 @@
 package com.codecool.drawapp.game_view
 
-class GamePresenter {
+class GamePresenter ( view : GameContractor) {
 }

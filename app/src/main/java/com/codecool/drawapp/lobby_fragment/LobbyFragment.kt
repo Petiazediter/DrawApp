@@ -67,6 +67,6 @@ class LobbyFragment : Fragment(), LobbyContractor {
     override fun moveToGameView(gameLobby: GameLobby) {
         val bundle = Bundle()
         bundle.putString("gameId", gameLobby.gameId)
-        findNavController().navigate(R.id.action_lobbyFragment_to_gameView)
+        findNavController().navigate(R.id.action_lobbyFragment_to_gameView,bundle)
     }
 }

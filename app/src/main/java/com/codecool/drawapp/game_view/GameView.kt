@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 
-class GameView : Fragment() {
+class GameView : Fragment(), GameContractor {
 
     lateinit var presenter : GamePresenter
 
@@ -24,8 +24,13 @@ class GameView : Fragment() {
         arguments?.let{
             val gameLobby = it.getString("gameId")
             gameLobby?.let{
-                Log.d("GameView", "onViewCreated() -> Lobby ID : $it")
-            } ?: run { findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
-        } ?: run {findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
+                presenter = GamePresenter(this)
+            } ?: run {
+                Log.d( "GameView", "onViewCreated() -> No gameId argument!")
+                findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
+        } ?: run {
+            Log.d( "GameView", "onViewCreated() -> No arguments!")
+            findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
     }
+
 }

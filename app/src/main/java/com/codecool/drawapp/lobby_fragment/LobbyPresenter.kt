@@ -82,6 +82,7 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
 
                 override fun onSuccess() {
                     Log.d("LobbyPresenter", "startGame() -> Success!")
+                    Log.d("LobbyPresenter", "startGame() -> LobbyRound : ${lobby.round}")
                 }
             })
         }
