@@ -56,9 +56,7 @@ class CanvasView : View {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        paths.forEach{
-            canvas?.drawPath(it.first,it.second)
-        }
+        paths.forEach{ canvas?.drawPath(it.first,it.second) }
     }
 
     fun setColor(color : Int){

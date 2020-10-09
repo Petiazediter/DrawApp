@@ -23,7 +23,7 @@ class DrawFragment : Fragment() {
         val canvasView = CanvasView(requireContext())
         view.draw_container.addView(canvasView)
         Log.d("DrawFragment()", "Canvas view added to frame layout!")
-        color_green.setOnClickListener { canvasView.setColor(Color.GREEN) }
+        erase_button.setOnClickListener { canvasView.setColor(Color.WHITE) }
         color_black.setOnClickListener { canvasView.setColor(Color.BLACK) }
         color_blue.setOnClickListener  { canvasView.setColor(Color.BLUE) }
         color_red.setOnClickListener   { canvasView.setColor(Color.RED) }
