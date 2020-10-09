@@ -11,18 +11,23 @@ import android.view.View
 import android.view.ViewGroup
 
 class CanvasView : View {
+    val paths = ArrayList<Pair<Path,Paint>>()
     var lParams : ViewGroup.LayoutParams
-    var path = Path()
     var brush : Paint = Paint()
 
     constructor(ctx: Context) : super(ctx) {
-        brush.isAntiAlias = true
-        brush.color = Color.BLACK
-        brush.style = Paint.Style.STROKE
-        brush.strokeJoin = Paint.Join.ROUND
-        brush.strokeWidth = 8f
-
+        brush = initBrush(Color.BLACK)
         lParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT)
+    }
+
+    private fun initBrush(color : Int) : Paint{
+        val mBrush = Paint()
+        mBrush.isAntiAlias = true
+        mBrush.color = color
+        mBrush.style = Paint.Style.STROKE
+        mBrush.strokeJoin = Paint.Join.ROUND
+        mBrush.strokeWidth = 8f
+        return mBrush
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -32,11 +37,13 @@ class CanvasView : View {
 
             when (it.action){
                 MotionEvent.ACTION_DOWN -> {
+                    val path = Path()
                     path.moveTo(pointX,pointY)
+                    paths.add(Pair(path,brush))
                     return true
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    path.lineTo(pointX,pointY)
+                    paths.last().first.lineTo(pointX,pointY)
                 }
                 else -> {
                     return false
@@ -49,6 +56,12 @@ class CanvasView : View {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        canvas?.drawPath(path,brush)
+        paths.forEach{
+            canvas?.drawPath(it.first,it.second)
+        }
+    }
+
+    fun setColor(color : Int){
+        brush = initBrush(color)
     }
 }
