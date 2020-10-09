@@ -1,11 +1,13 @@
 package com.codecool.drawapp.game_view.fragments.draw_section
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.codecool.drawapp.R
+import kotlinx.android.synthetic.main.fragment_draw.view.*
 
 class DrawFragment : Fragment() {
 
@@ -16,5 +18,8 @@ class DrawFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val canvasView = CanvasView(requireContext())
+        view.draw_container.addView(canvasView)
+        Log.d("DrawFragment()", "Canvas view added to frame layout!")
     }
 }
