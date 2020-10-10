@@ -17,7 +17,7 @@ class ApiSingleton{
                     .build()
 
                 instance = Retrofit.Builder()
-                    .baseUrl("http://api.wordnik.com/v4/words.json/")
+                    .baseUrl("https://api.wordnik.com/v4/words.json/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(client)

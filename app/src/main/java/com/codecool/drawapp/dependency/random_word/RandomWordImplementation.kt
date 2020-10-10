@@ -4,6 +4,7 @@ import android.util.Log
 import com.codecool.drawapp.api.ApiRequests
 import com.codecool.drawapp.api.ApiSingleton
 import com.codecool.drawapp.api.RandomWord
+import com.codecool.drawapp.api.RandomWordWrapper
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,18 +29,20 @@ class RandomWordImplementation : RandomWordService {
         val retrofit = ApiSingleton.getApiClient()
         val myApi = retrofit.create(ApiRequests::class.java)
 
-        val results : Observable<RandomWord> = myApi
+        val results : Observable<List<RandomWord>> = myApi
             .getRandomWord()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
         results
-            .subscribe(object : Observer<RandomWord>{
+            .subscribe(object : Observer<List<RandomWord>>{
                 override fun onSubscribe(d: Disposable) {}
 
-                override fun onNext(t: RandomWord) {
-                    view.onSuccess(t)
-                    Log.d("RandomWordImplementation", "OnNext() -> ${t.name}")
+                override fun onNext(t: List<RandomWord>) {
+                    val word = t.get(0)
+                    word.let{
+                        view.onSuccess(it)
+                        Log.d("RandomWordImplementation", "OnNext() -> ${it.name}")}
                 }
 
                 override fun onError(e: Throwable) {

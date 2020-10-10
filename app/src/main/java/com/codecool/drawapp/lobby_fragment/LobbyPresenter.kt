@@ -85,6 +85,8 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
                     Log.d("LobbyPresenter", "startGame() -> LobbyRound : ${lobby.round}")
                 }
             })
+        } ?: run {
+            Log.d("LobbyPresenter", "Error: No lobby!")
         }
     }
 }
