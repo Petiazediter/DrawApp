@@ -44,6 +44,12 @@ class GameView : Fragment(), GameContractor {
         transaction.replace(R.id.fragment_container, drawFragment)
         transaction.addToBackStack(null)
         transaction.commit()
+
+        presenter.getRandomWord()
+    }
+
+    override fun getWord(word: String) {
+
     }
 
 }

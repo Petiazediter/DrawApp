@@ -12,6 +12,8 @@ import com.codecool.drawapp.dependency.lobby.LobbyImplementation
 import com.codecool.drawapp.dependency.lobby.LobbyService
 import com.codecool.drawapp.dependency.login.LoginImplementation
 import com.codecool.drawapp.dependency.login.LoginService
+import com.codecool.drawapp.dependency.random_word.RandomWordImplementation
+import com.codecool.drawapp.dependency.random_word.RandomWordService
 import com.codecool.drawapp.dependency.register.RegisterImplementation
 import com.codecool.drawapp.dependency.register.RegisterService
 import org.koin.dsl.module
@@ -24,4 +26,5 @@ val appModule = module{
     single<BasicDatabaseQueryService>{ BasicDatabaseQueries()}
     single<FriendInvitesService>{ FriendInvitesImplementation()}
     single<LobbyService>{ LobbyImplementation() }
+    single<RandomWordService>{RandomWordImplementation()}
 }

@@ -30,8 +30,4 @@ class DrawFragment : Fragment() {
         color_yellow.setOnClickListener { canvasView.setColor(Color.YELLOW) }
     }
 
-    fun setColor( color : Int){
-        Log.d("DrawFragment", "Color -> $color" )
-
-    }
 }

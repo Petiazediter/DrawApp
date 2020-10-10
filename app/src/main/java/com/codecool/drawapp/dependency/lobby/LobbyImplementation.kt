@@ -139,19 +139,6 @@ class LobbyImplementation : LobbyService,KoinComponent {
     }
 
     override fun startLobby(gameLobby: GameLobby, view: StartLobbyCallback) {
-        val lobbyReference = ProjectDatabase.FIREBASE_DB.getReference("games").child(gameLobby.gameId)
-        basicDatabaseQueryService.getMyUserFromDatabase( object : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
-            override fun onFail() {
-                view.onError("Unknown Error occupied!")
-            }
-
-            override fun onSuccess(user: User) {
-                if ( gameLobby.gameLeader == user.userId) {
-                    gameLobby.round = 1
-                    lobbyReference.setValue(gameLobby)
-                    view.onSuccess()
-                } else view.onError("You don't have permission to do this!")
-            }
-        })
+        
     }
 }
