@@ -30,4 +30,8 @@ class DrawFragment : Fragment() {
         color_yellow.setOnClickListener { canvasView.setColor(Color.YELLOW) }
     }
 
+    fun setWord(word: String) {
+        word_tv.text = word
+    }
+
 }

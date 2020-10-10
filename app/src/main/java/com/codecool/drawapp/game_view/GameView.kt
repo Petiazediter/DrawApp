@@ -49,7 +49,7 @@ class GameView : Fragment(), GameContractor {
     }
 
     override fun getWord(word: String) {
-
+        drawFragment.setWord(word)
     }
 
 }
