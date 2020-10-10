@@ -98,7 +98,7 @@
         <action
             android:id="@+id/action_lobbyFragment_to_gameView"
             app:destination="@id/gameView"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/mainMenuFragment" />
 
     </fragment>
     <fragment
