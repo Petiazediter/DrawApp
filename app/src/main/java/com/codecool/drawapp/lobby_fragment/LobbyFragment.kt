@@ -12,8 +12,8 @@ import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_invites.*
-import kotlinx.android.synthetic.main.fragment_invites.loading_bar
 import kotlinx.android.synthetic.main.fragment_lobby.*
+import kotlinx.android.synthetic.main.loading_view.*
 
 
 class LobbyFragment : Fragment(), LobbyContractor {
@@ -30,6 +30,8 @@ class LobbyFragment : Fragment(), LobbyContractor {
         presenter = LobbyPresenter(this)
         val lobbyId : String? = arguments?.getString("lobbyId")
         lobbyId?.let{ presenter.joinGame(it) } ?: run {presenter.createGame()}
+        loading_bar.startRippleAnimation()
+        loading_bar.visibility = View.VISIBLE
     }
 
     override fun onFail() {
@@ -40,6 +42,7 @@ class LobbyFragment : Fragment(), LobbyContractor {
     override fun onSuccess(gameLobby : GameLobby) {
         // Success game create
         loading_bar.visibility = View.INVISIBLE
+        loading_bar.stopRippleAnimation()
         mid.visibility = View.VISIBLE
         max_players.visibility = View.VISIBLE
 

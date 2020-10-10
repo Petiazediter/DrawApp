@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.User
 import kotlinx.android.synthetic.main.fragment_friends.*
+import kotlinx.android.synthetic.main.loading_view.*
 
 class FriendsFragment : Fragment(), FriendsContractor {
 
@@ -25,7 +26,8 @@ class FriendsFragment : Fragment(), FriendsContractor {
         super.onViewCreated(view, savedInstanceState)
         presenter = FriendsPresenter(this)
         presenter.setUpRecycler()
-
+        loading_bar.visibility = View.VISIBLE
+        loading_bar.startRippleAnimation()
         my_invites.setOnClickListener {
             findNavController().navigate(R.id.action_friendsFragment_to_invitesFragment)
         }
@@ -37,11 +39,13 @@ class FriendsFragment : Fragment(), FriendsContractor {
             recycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL, false)
             recycler.visibility = View.VISIBLE
             loading_bar.visibility = View.INVISIBLE
+            loading_bar.stopRippleAnimation()
         }
     }
 
     override fun emptyRecycler() {
         loading_bar.visibility = View.INVISIBLE
+        loading_bar.stopRippleAnimation()
         empty_alert.visibility = View.VISIBLE
     }
 }

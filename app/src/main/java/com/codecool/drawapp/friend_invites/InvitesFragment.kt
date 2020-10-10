@@ -12,6 +12,7 @@ import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.ProjectDatabase
 import com.codecool.drawapp.data_layer.User
 import kotlinx.android.synthetic.main.fragment_invites.*
+import kotlinx.android.synthetic.main.loading_view.*
 
 
 class InvitesFragment : Fragment(), InvitesContractor {
@@ -35,11 +36,13 @@ class InvitesFragment : Fragment(), InvitesContractor {
 
     override fun emptyInvitesRecycler() {
         loading_bar.visibility = View.INVISIBLE
+        loading_bar.stopRippleAnimation()
         empty_alert.visibility = View.VISIBLE
     }
 
     override fun setInvitesRecycler(list: List<User>) {
         loading_bar.visibility = View.INVISIBLE
+        loading_bar.stopRippleAnimation()
         my_invites_recycler.visibility = View.VISIBLE
         my_invites_recycler.adapter = FriendRequestAdapter(list, LayoutInflater.from(requireContext()),this)
         my_invites_recycler.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -49,6 +52,7 @@ class InvitesFragment : Fragment(), InvitesContractor {
     private fun showLoading(){
         my_invites_recycler.visibility = View.INVISIBLE
         loading_bar.visibility = View.VISIBLE
+        loading_bar.startRippleAnimation()
     }
 
     override fun acceptFriendRequest(userId: String) {

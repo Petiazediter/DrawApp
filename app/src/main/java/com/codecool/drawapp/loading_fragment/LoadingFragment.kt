@@ -11,7 +11,9 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.fragment_loading.*
 import kotlinx.android.synthetic.main.fragment_loading.view.*
+import kotlinx.android.synthetic.main.loading_view.*
 
 class LoadingFragment : Fragment(), LoadingContractor {
 
@@ -25,6 +27,9 @@ class LoadingFragment : Fragment(), LoadingContractor {
         super.onViewCreated(view, savedInstanceState)
         presenter = LoadingPresenter(this)
         presenter.checkLoggedInStatus()
+
+        loading_bar.visibility = View.VISIBLE
+        loading_bar.startRippleAnimation()
     }
 
     override fun isLoggedIn(loggedIn: Boolean) {

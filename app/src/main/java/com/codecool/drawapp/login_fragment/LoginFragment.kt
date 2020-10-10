@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.loading_view.*
 
 class LoginFragment : Fragment(), LoginContractor {
 
@@ -34,12 +35,14 @@ class LoginFragment : Fragment(), LoginContractor {
         edit_layout.visibility = View.INVISIBLE
         sign_up_button.visibility = View.INVISIBLE
         loading_bar.visibility = View.VISIBLE
+        loading_bar.startRippleAnimation()
     }
 
     private fun showEdit(){
         edit_layout.visibility = View.VISIBLE
         sign_up_button.visibility = View.VISIBLE
         loading_bar.visibility = View.INVISIBLE
+        loading_bar.stopRippleAnimation()
     }
 
     override fun onError(error: String) {

@@ -94,17 +94,10 @@
                 android:layout_width="match_parent" />
         </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/loading_bar"
-        tools:visibility="visible"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <include
+        layout="@layout/loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/rotate_setting" />
-
+        app:layout_constraintLeft_toLeftOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

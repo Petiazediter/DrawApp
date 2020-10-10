@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
-import com.codecool.drawapp.dependency.register.RegisterService
-import kotlinx.android.synthetic.main.fragment_loading.*
 import kotlinx.android.synthetic.main.fragment_register.*
+import kotlinx.android.synthetic.main.loading_view.*
 
 
 class RegisterFragment : Fragment(), RegisterContractor {
@@ -41,12 +40,14 @@ class RegisterFragment : Fragment(), RegisterContractor {
         edit_layout.visibility = View.INVISIBLE
         sign_in_button.visibility = View.INVISIBLE
         loading_bar.visibility = View.VISIBLE
+        loading_bar.startRippleAnimation()
     }
 
     private fun showEdit(){
         edit_layout.visibility = View.VISIBLE
         sign_in_button.visibility = View.VISIBLE
         loading_bar.visibility = View.INVISIBLE
+        loading_bar.stopRippleAnimation()
     }
 
     override fun onError(errorMessage: String) {
