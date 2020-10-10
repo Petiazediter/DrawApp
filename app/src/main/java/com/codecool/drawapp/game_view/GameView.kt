@@ -1,7 +1,7 @@
 package com.codecool.drawapp.game_view
 
-import android.graphics.Color
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
-import com.codecool.drawapp.data_layer.GameLobby
+import com.codecool.drawapp.api.ApiSingleton
 import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
 import kotlinx.android.synthetic.main.fragment_draw.*
+import kotlinx.android.synthetic.main.fragment_draw.view.*
+import kotlinx.coroutines.*
 
 class GameView : Fragment(), GameContractor {
 
@@ -50,6 +52,19 @@ class GameView : Fragment(), GameContractor {
 
     override fun getWord(word: String) {
         drawFragment.setWord(word)
+        startTimer()
+    }
+
+    private fun startTimer() {
+        GlobalScope.launch {
+            (0..60).forEach {num ->
+                delay(1000)
+                withContext(Dispatchers.Main,{view?.let{
+                    it.timer_text.text = (60-num).toString()}
+                })
+            }
+
+        }
     }
 
 }

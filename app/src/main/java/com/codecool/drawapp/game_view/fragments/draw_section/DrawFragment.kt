@@ -10,6 +10,12 @@ import android.view.ViewGroup
 import com.codecool.drawapp.R
 import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
 
 class DrawFragment : Fragment() {
 
@@ -32,6 +38,8 @@ class DrawFragment : Fragment() {
 
     fun setWord(word: String) {
         word_tv.text = word
+
     }
+
 
 }
