@@ -78,15 +78,18 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
             lobbyService.startLobby(lobby,object : LobbyImplementation.StartLobbyCallback{
                 override fun onError(errorMsg: String) {
                     Log.d("LobbyPresenter", "startGame() -> Error (# $errorMsg )")
+                    view.showError(errorMsg)
                 }
 
                 override fun onSuccess() {
                     Log.d("LobbyPresenter", "startGame() -> Success!")
                     Log.d("LobbyPresenter", "startGame() -> LobbyRound : ${lobby.round}")
+                    view.showSuccess("Game Started!")
                 }
             })
         } ?: run {
             Log.d("LobbyPresenter", "Error: No lobby!")
+            view.showError("Unknown error!")
         }
     }
 }

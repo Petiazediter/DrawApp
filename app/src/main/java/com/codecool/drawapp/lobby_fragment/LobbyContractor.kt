@@ -7,4 +7,7 @@ interface LobbyContractor {
     fun onSuccess(gameLobby: GameLobby)
     fun changeLobby ( gameLobby: GameLobby)
     fun moveToGameView(gameLobby: GameLobby)
+
+    fun showError( message : String)
+    fun showSuccess(message : String)
 }

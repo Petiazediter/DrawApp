@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_loading.view.*
 
 class LoadingFragment : Fragment(), LoadingContractor {

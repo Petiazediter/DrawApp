@@ -29,6 +29,8 @@
             android:layout_margin="10dp"
             android:id="@+id/create_game"
             app:cardCornerRadius="10dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -59,6 +61,8 @@
             android:layout_margin="10dp"
             android:id="@+id/join_game_button"
             app:cardCornerRadius="10dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -89,6 +93,9 @@
             android:layout_margin="10dp"
             android:id="@+id/friends"
             app:cardCornerRadius="10dp"
+
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -121,6 +128,8 @@
             android:layout_margin="10dp"
             android:id="@+id/log_out_button"
             app:cardCornerRadius="10dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_invites.*
 import kotlinx.android.synthetic.main.fragment_invites.loading_bar
 import kotlinx.android.synthetic.main.fragment_lobby.*
@@ -68,5 +70,13 @@ class LobbyFragment : Fragment(), LobbyContractor {
         val bundle = Bundle()
         bundle.putString("gameId", gameLobby.gameId)
         findNavController().navigate(R.id.action_lobbyFragment_to_gameView,bundle)
+    }
+
+    override fun showError(message: String) {
+        Toasty.error(requireContext(), message, Toasty.LENGTH_SHORT).show()
+    }
+
+    override fun showSuccess(message: String) {
+        Toasty.success(requireContext(), message, Toasty.LENGTH_SHORT).show()
     }
 }

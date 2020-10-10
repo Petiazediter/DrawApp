@@ -62,4 +62,7 @@ dependencies {
     // RxAndroid
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
+    // Toasty
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
+
 }
