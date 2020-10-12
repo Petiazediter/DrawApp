@@ -15,6 +15,7 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
 
     val lobbyService : LobbyService by inject()
     val lobbyListenerService : LobbyListenerService by inject()
+    var gameLobby : GameLobby? = null
 
     // Hosting a new game
     fun createGame(){
@@ -25,6 +26,7 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
 
             override fun onSuccess(gameLobby: GameLobby) {
                 view.onSuccess(gameLobby)
+                this@LobbyPresenter.gameLobby = gameLobby
             }
         })
     }
@@ -37,6 +39,11 @@ class LobbyPresenter(val view : LobbyContractor) : KoinComponent {
     // Quitting from the lobby
     fun quitLobby(){
         lobbyListenerService.detachView()
+        Log.d("LobbyFragment", "Detached view!")
+        gameLobby?.let{
+            Log.d("LobbyPresenter", "onQuit() -> ${it.gameId}")
+            lobbyService.quitLobby(it)} ?: run{Log.d("LobbyPresenter", "onQuit() -> No game!")}
+        view.quitToMenu()
     }
 
     // Join Game with the given Lobby ID

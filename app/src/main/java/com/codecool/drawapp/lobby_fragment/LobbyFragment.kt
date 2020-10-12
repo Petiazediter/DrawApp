@@ -70,6 +70,7 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener {
     override fun onDestroy() {
         super.onDestroy()
         presenter.quitLobby()
+        Log.d("LobbyFragment", "Quit to lobby")
     }
 
     override fun changeLobby(gameLobby: GameLobby) {
@@ -96,13 +97,21 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener {
 
     override fun onLobbyChange(lobby: GameLobby) {
         changeLobby(lobby)
+        Log.d("LobbyFragment()", "Lobby Changed -> change!")
     }
 
     override fun requestQuitToMenu() {
+        Log.d("LobbyFragment", "Request to quit!")
         presenter.quitLobby()
     }
 
     override fun onRoundChange(lobby: GameLobby) {
         moveToGameView(lobby)
+    }
+
+    override fun quitToMenu() {
+        view?.let{
+            findNavController().navigate(R.id.action_lobbyFragment_to_mainMenuFragment)
+        }
     }
 }

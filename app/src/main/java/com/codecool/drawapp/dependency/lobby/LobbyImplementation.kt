@@ -1,5 +1,6 @@
 package com.codecool.drawapp.dependency.lobby
 
+import android.renderscript.Sampler
 import android.util.Log
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.data_layer.ProjectDatabase
@@ -138,6 +139,7 @@ class LobbyImplementation : LobbyService,KoinComponent {
         fun onSuccess()
     }
 
+
     override fun startLobby(gameLobby: GameLobby, view: StartLobbyCallback) {
         val lobbyReference = ProjectDatabase.FIREBASE_DB.getReference("games").child(gameLobby.gameId)
         basicDatabaseQueryService.getMyUserFromDatabase( object : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
@@ -153,6 +155,26 @@ class LobbyImplementation : LobbyService,KoinComponent {
                         view.onSuccess()
                     } else view.onError("There's not enough player in the lobby ( 2 )!")
                 } else view.onError("You don't have permission to do this!")
+            }
+        })
+    }
+
+
+
+    interface FindLobbyCallback {
+        fun onCompleted ( lobby : GameLobby?)
+    }
+
+    override fun findLobbyById(id: String, view: FindLobbyCallback) {
+        val ref = ProjectDatabase.FIREBASE_DB.getReference("games").child(id)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+                view.onCompleted(null)
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if ( snapshot.exists()) view.onCompleted(snapshot.getValue(GameLobby::class.java))
+                else view.onCompleted(null)
             }
         })
     }

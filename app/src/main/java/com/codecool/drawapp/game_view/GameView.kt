@@ -10,12 +10,14 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import com.codecool.drawapp.api.ApiSingleton
+import com.codecool.drawapp.data_layer.GameLobby
+import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
 import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
 import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
 import kotlinx.coroutines.*
 
-class GameView : Fragment(), GameContractor {
+class GameView : Fragment(), GameContractor, LobbyListener {
 
     lateinit var presenter : GamePresenter
     lateinit var drawFragment: DrawFragment
@@ -31,13 +33,18 @@ class GameView : Fragment(), GameContractor {
             val gameLobby = it.getString("gameId")
             gameLobby?.let{
                 presenter = GamePresenter(this)
+                presenter.attachToListener(this,gameLobby)
                 buildRound()
             } ?: run {
                 Log.d( "GameView", "onViewCreated() -> No gameId argument!")
-                findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
+                backToMenu()}
         } ?: run {
             Log.d( "GameView", "onViewCreated() -> No arguments!")
-            findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
+            backToMenu()}
+    }
+
+    override fun backToMenu() {
+        findNavController().navigate(R.id.action_gameView_to_lobbyFragment)
     }
 
     private fun buildRound(){
@@ -59,12 +66,30 @@ class GameView : Fragment(), GameContractor {
         GlobalScope.launch {
             (0..60).forEach {num ->
                 delay(1000)
-                withContext(Dispatchers.Main,{view?.let{
-                    it.timer_text.text = (60-num).toString()}
-                })
+                withContext(Dispatchers.Main) {
+                    view?.let {
+                        it.timer_text.text = (60 - num).toString()
+                    }
+                }
             }
 
         }
     }
 
+    override fun onLobbyChange(lobby: GameLobby) {
+        Log.d("GameView", "onLobbyChange() -> LobbyChanged")
+    }
+
+    override fun onRoundChange(lobby: GameLobby) {
+        // To Do
+    }
+
+    override fun requestQuitToMenu() {
+        presenter.onQuit(true)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onQuit(false)
+    }
 }

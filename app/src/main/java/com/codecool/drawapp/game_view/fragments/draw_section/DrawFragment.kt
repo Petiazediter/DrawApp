@@ -37,8 +37,7 @@ class DrawFragment : Fragment() {
     }
 
     fun setWord(word: String) {
-        word_tv.text = word
-
+        view?.word_tv?.text = word
     }
 
 

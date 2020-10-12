@@ -45,10 +45,13 @@ class LobbyListenerImp : LobbyListenerService {
                             val leader = currentLobby.gameLeader
                             val players = currentLobby.players
                             val round = currentLobby.round
-                            if ( (leader !in players.map{it.userId}) || (players.size == 1 && round > 0)){
-                                Log.d("LobbyListener", "onDataChange() -> request quit bc. 1 player || no leader")
+                            if ( leader !in players.map{it.userId}){
+                                Log.d("LobbyListener", "onDataChange() -> request to quit cause no leader")
                                 myView?.requestQuitToMenu()
-                            } else if (gameLobby.round != round){
+                            } else if (players.size == 1 && round > 0 ) {
+                                Log.d("LobbyListener", "onDataChange() -> request to quit cause 1 player")
+                                myView?.requestQuitToMenu()
+                            }else if (gameLobby.round != round){
                                 myView?.onRoundChange(currentLobby)
                             }
                             else myView?.onLobbyChange(currentLobby)

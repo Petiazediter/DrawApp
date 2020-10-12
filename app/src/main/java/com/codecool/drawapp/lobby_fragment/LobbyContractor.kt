@@ -10,4 +10,6 @@ interface LobbyContractor {
 
     fun showError( message : String)
     fun showSuccess(message : String)
+
+    fun quitToMenu()
 }

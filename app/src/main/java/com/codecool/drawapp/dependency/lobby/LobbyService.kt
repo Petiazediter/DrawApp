@@ -11,4 +11,6 @@ interface LobbyService {
     fun quitLobby(lobby: GameLobby)
     fun joinLobby ( lobbyId : String, view : LobbyImplementation.JoinLobbyCallback)
     fun startLobby ( lobby : GameLobby, view : LobbyImplementation.StartLobbyCallback)
+    fun findLobbyById(id : String, view : LobbyImplementation.FindLobbyCallback)
+
 }
