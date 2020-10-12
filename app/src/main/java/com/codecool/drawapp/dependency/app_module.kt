@@ -10,6 +10,8 @@ import com.codecool.drawapp.dependency.friends.FriendsImplementation
 import com.codecool.drawapp.dependency.friends.FriendsService
 import com.codecool.drawapp.dependency.lobby.LobbyImplementation
 import com.codecool.drawapp.dependency.lobby.LobbyService
+import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListenerImp
+import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListenerService
 import com.codecool.drawapp.dependency.login.LoginImplementation
 import com.codecool.drawapp.dependency.login.LoginService
 import com.codecool.drawapp.dependency.random_word.RandomWordImplementation
@@ -27,4 +29,5 @@ val appModule = module{
     single<FriendInvitesService>{ FriendInvitesImplementation()}
     single<LobbyService>{ LobbyImplementation() }
     single<RandomWordService>{RandomWordImplementation()}
+    single<LobbyListenerService>{ LobbyListenerImp() }
 }
