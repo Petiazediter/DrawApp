@@ -147,9 +147,11 @@ class LobbyImplementation : LobbyService,KoinComponent {
 
             override fun onSuccess(user: User) {
                 if ( gameLobby.gameLeader == user.userId) {
-                    gameLobby.round = 1
-                    lobbyReference.setValue(gameLobby)
-                    view.onSuccess()
+                    if ( gameLobby.players.size > 1) {
+                        gameLobby.round = 1
+                        lobbyReference.setValue(gameLobby)
+                        view.onSuccess()
+                    } else view.onError("There's not enough player in the lobby ( 2 )!")
                 } else view.onError("You don't have permission to do this!")
             }
         })

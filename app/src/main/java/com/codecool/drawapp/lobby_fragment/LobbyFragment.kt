@@ -10,13 +10,14 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
+import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_invites.*
 import kotlinx.android.synthetic.main.fragment_lobby.*
 import kotlinx.android.synthetic.main.loading_view.*
 
 
-class LobbyFragment : Fragment(), LobbyContractor {
+class LobbyFragment : Fragment(), LobbyContractor, LobbyListener {
 
     lateinit var presenter: LobbyPresenter
 
@@ -41,6 +42,8 @@ class LobbyFragment : Fragment(), LobbyContractor {
 
     override fun onSuccess(gameLobby : GameLobby) {
         // Success game create
+        presenter.joinLobby(gameLobby, this)
+
         loading_bar.visibility = View.INVISIBLE
         loading_bar.stopRippleAnimation()
         mid.visibility = View.VISIBLE
@@ -55,8 +58,12 @@ class LobbyFragment : Fragment(), LobbyContractor {
         friendsRecycler.visibility = View.VISIBLE
 
         startGame.visibility = View.VISIBLE
-        startGame.setOnClickListener{
-            presenter.startGame()
+        updateStartGameButton(gameLobby)
+    }
+
+    private fun updateStartGameButton(gameLobby: GameLobby) {
+        startGame.setOnClickListener {
+            presenter.startGame(lobby = gameLobby)
         }
     }
 
@@ -67,6 +74,10 @@ class LobbyFragment : Fragment(), LobbyContractor {
 
     override fun changeLobby(gameLobby: GameLobby) {
         current_players.text = gameLobby.players.size.toString()
+        updateStartGameButton(gameLobby)
+        if ( gameLobby.round > 0){
+            moveToGameView(gameLobby)
+        }
     }
 
     override fun moveToGameView(gameLobby: GameLobby) {
@@ -81,5 +92,17 @@ class LobbyFragment : Fragment(), LobbyContractor {
 
     override fun showSuccess(message: String) {
         Toasty.success(requireContext(), message, Toasty.LENGTH_SHORT).show()
+    }
+
+    override fun onLobbyChange(lobby: GameLobby) {
+        changeLobby(lobby)
+    }
+
+    override fun requestQuitToMenu() {
+        presenter.quitLobby()
+    }
+
+    override fun onRoundChange(lobby: GameLobby) {
+        moveToGameView(lobby)
     }
 }

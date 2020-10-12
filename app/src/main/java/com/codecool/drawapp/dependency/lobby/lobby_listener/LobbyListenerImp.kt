@@ -30,23 +30,29 @@ class LobbyListenerImp : LobbyListenerService {
         myLobby = lobby
 
         // Set my listener to a new valueEventListener
-        myListener = object : ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-                myView?.requestQuitToMenu()
-            }
+        myLobby?.let{gameLobby ->
+            myListener = object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                    myView?.requestQuitToMenu()
+                }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if ( !snapshot.exists()) myView?.requestQuitToMenu()
-                else {
-                    val theLobby = snapshot.getValue(GameLobby::class.java)
-                    theLobby?.let{ currentLobby ->
-                        // If the leader not in the match anymore
-                        val leader = currentLobby.gameLeader
-                        val players = currentLobby.players
-                        if ( (leader !in players.map{it.userId}) || players.size == 1){
-                            Log.d("LobbyListener", "onDataChange() -> request quit bc. 1 player || no leader")
-                            myView?.requestQuitToMenu()
-                        } else myView?.onLobbyChange(currentLobby)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if ( !snapshot.exists()) myView?.requestQuitToMenu()
+                    else {
+                        val theLobby = snapshot.getValue(GameLobby::class.java)
+                        theLobby?.let{ currentLobby ->
+                            // If the leader not in the match anymore
+                            val leader = currentLobby.gameLeader
+                            val players = currentLobby.players
+                            val round = currentLobby.round
+                            if ( (leader !in players.map{it.userId}) || (players.size == 1 && round > 0)){
+                                Log.d("LobbyListener", "onDataChange() -> request quit bc. 1 player || no leader")
+                                myView?.requestQuitToMenu()
+                            } else if (gameLobby.round != round){
+                                myView?.onRoundChange(currentLobby)
+                            }
+                            else myView?.onLobbyChange(currentLobby)
+                        }
                     }
                 }
             }

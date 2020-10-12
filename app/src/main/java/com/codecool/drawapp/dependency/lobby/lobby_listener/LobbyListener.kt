@@ -5,4 +5,5 @@ import com.codecool.drawapp.data_layer.GameLobby
 interface LobbyListener {
     fun requestQuitToMenu()
     fun onLobbyChange(lobby : GameLobby)
+    fun onRoundChange(lobby : GameLobby)
 }
