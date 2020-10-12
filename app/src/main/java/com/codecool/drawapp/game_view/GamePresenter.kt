@@ -33,9 +33,12 @@ class GamePresenter ( val view : GameContractor) : KoinComponent {
     }
 
     fun onQuit(quit : Boolean) {
-        lobbyListenerService.detachView()
         gameLobby?.let{lobbyService.quitLobby(it)}
         if (quit) view.backToMenu()
+    }
+
+    fun unAttach(){
+        lobbyListenerService.detachView()
     }
 
     fun attachToListener(view_ : LobbyListener, lobby : String){

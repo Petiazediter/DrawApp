@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.codecool.drawapp.MainActivity
 import com.codecool.drawapp.R
 import com.codecool.drawapp.api.ApiSingleton
 import com.codecool.drawapp.data_layer.GameLobby
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
 import kotlinx.coroutines.*
 
-class GameView : Fragment(), GameContractor, LobbyListener {
+class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackButtonInterface {
 
     lateinit var presenter : GamePresenter
     lateinit var drawFragment: DrawFragment
@@ -44,7 +45,8 @@ class GameView : Fragment(), GameContractor, LobbyListener {
     }
 
     override fun backToMenu() {
-        findNavController().navigate(R.id.action_gameView_to_lobbyFragment)
+        view?.let{
+        findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
     }
 
     private fun buildRound(){
@@ -90,6 +92,10 @@ class GameView : Fragment(), GameContractor, LobbyListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        presenter.unAttach()
+    }
+
+    override fun onBackButtonPressed() {
         presenter.onQuit(false)
     }
 }
