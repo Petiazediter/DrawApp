@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.codecool.drawapp.MainActivity
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_lobby.*
 import kotlinx.android.synthetic.main.loading_view.*
 
 
-class LobbyFragment : Fragment(), LobbyContractor, LobbyListener {
+class LobbyFragment : Fragment(), LobbyContractor, LobbyListener, MainActivity.BackButtonInterface {
 
     lateinit var presenter: LobbyPresenter
 
@@ -69,8 +70,12 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.quitLobby()
-        Log.d("LobbyFragment", "Quit to lobby")
+        presenter.unAttach()
+    }
+
+    override fun onBackButtonPressed() {
+        presenter.quitFromLobby(true)
+        Log.d ( "LobbyFragment", "onBackButtonPressed()")
     }
 
     override fun changeLobby(gameLobby: GameLobby) {
@@ -102,7 +107,7 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener {
 
     override fun requestQuitToMenu() {
         Log.d("LobbyFragment", "Request to quit!")
-        presenter.quitLobby()
+        presenter.quitFromLobby(false)
     }
 
     override fun onRoundChange(lobby: GameLobby) {
