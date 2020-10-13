@@ -24,6 +24,7 @@ class WaitingPresenter(val view : WaitingContractor) : KoinComponent {
                         if (lobby.players.size != files.items.size){
                             finishChecker()
                         } else {
+                            view.allFilesLoaded(files.items)
                             Log.d("WaitingPresenter", "All files uploaded :) (${lobby.players.size}/${lobby.players.size}")
                         }
                     }

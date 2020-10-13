@@ -1,6 +1,7 @@
 package com.codecool.drawapp.game_view.fragments.wait_section
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import com.codecool.drawapp.MainActivity
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
+import com.codecool.drawapp.game_view.GameView
+import com.google.firebase.storage.StorageReference
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.loading_view.*
 
@@ -35,4 +38,7 @@ class WaitingForOthersFragment(private var gameLobby: GameLobby): Fragment() , W
         presenter.gameLobby = lobby
     }
 
+    override fun allFilesLoaded(files: List<StorageReference>){
+        (parentFragment as? GameView)?.onAllFilesLoaded(files)
+    }
 }

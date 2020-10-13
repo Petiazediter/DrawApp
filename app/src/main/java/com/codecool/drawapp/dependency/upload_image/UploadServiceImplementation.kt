@@ -23,7 +23,7 @@ class UploadServiceImplementation : UploadService, KoinComponent {
 
     val basicDatabaseQueriesService : BasicDatabaseQueryService by inject()
 
-    override fun uploadImage(bitmap: Bitmap, context : Context,gameLobby: GameLobby) {
+    override fun uploadImage(bitmap: Bitmap, context : Context,gameLobby: GameLobby, word : String) {
         basicDatabaseQueriesService.getMyUserFromDatabase(object : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
 
             override fun onFail() {
@@ -31,7 +31,7 @@ class UploadServiceImplementation : UploadService, KoinComponent {
             }
 
             override fun onSuccess(user: User) {
-                val fileName = "${gameLobby.gameId}/${gameLobby.round}/${user.userName}"
+                val fileName = "${gameLobby.gameId}/${gameLobby.round}/${user.userName}---$word"
                 val file = createFileFromBitmap(bitmap,context)
                 val reference = ProjectDatabase.FIREBASE_STORAGE.getReference(fileName)
                 reference.putFile(Uri.fromFile(file))
@@ -43,7 +43,7 @@ class UploadServiceImplementation : UploadService, KoinComponent {
     }
 
     private fun createFileFromBitmap(bitmap: Bitmap, context: Context) : File{
-        val file : File = File(context.cacheDir,UUID.randomUUID().toString())
+        val file = File(context.cacheDir,UUID.randomUUID().toString())
         file.createNewFile()
 
         val bos = ByteArrayOutputStream()

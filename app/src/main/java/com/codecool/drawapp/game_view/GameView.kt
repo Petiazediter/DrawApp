@@ -21,7 +21,9 @@ import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
 import com.codecool.drawapp.dependency.upload_image.UploadService
 import com.codecool.drawapp.dependency.upload_image.UploadServiceImplementation
 import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
+import com.codecool.drawapp.game_view.fragments.guess_section.GuessingFragment
 import com.codecool.drawapp.game_view.fragments.wait_section.WaitingForOthersFragment
+import com.google.firebase.storage.StorageReference
 import com.muddzdev.quickshot.QuickShot
 import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
@@ -40,6 +42,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
         SCORES(5)
     }
 
+    private var files: List<StorageReference>? = null
     private var currentState = GameState.DRAWING.state
     val uploadService : UploadService by inject()
     lateinit var presenter : GamePresenter
@@ -106,11 +109,9 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
                 draw.layout(0,0,draw.width,draw.height)
                 draw.draw(canvas)
                 Log.d("GameView", "Bitmap created!")
-                uploadService.uploadImage(bitmap,requireContext(),presenter.gameLobby!!)
+                uploadService.uploadImage(bitmap,requireContext(),presenter.gameLobby!!, drawFragment.view?.word_tv?.text.toString())
         } ?: run{ Log.d("GameView", "Draw is null!")}
     }
-
-
 
     override fun onRoundChange(lobby: GameLobby) {
 
@@ -146,6 +147,13 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
                 val waitingFragment = WaitingForOthersFragment(presenter.gameLobby!!)
                 loadFragment(waitingFragment)
             }
+
+            GameState.GUESSING.state -> {
+                files?.let{
+                    val guessingFragment = GuessingFragment(it, presenter.gameLobby!!)
+                    loadFragment(guessingFragment)
+                }
+            }
         }
     }
 
@@ -162,5 +170,10 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
             val waitingFragment = parentFragmentManager.fragments[0] as? WaitingForOthersFragment
             waitingFragment?.onLobbyChanged(lobby)
         }
+    }
+
+    fun onAllFilesLoaded(files: List<StorageReference>){
+        this.files = files
+        openFragment(GameState.GUESSING.state)
     }
 }

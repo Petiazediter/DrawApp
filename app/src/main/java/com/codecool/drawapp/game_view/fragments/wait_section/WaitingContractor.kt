@@ -1,5 +1,8 @@
 package com.codecool.drawapp.game_view.fragments.wait_section
 
-interface WaitingContractor {
+import com.google.firebase.storage.ListResult
+import com.google.firebase.storage.StorageReference
 
+interface WaitingContractor {
+    fun allFilesLoaded(files : List<StorageReference>)
 }
