@@ -1,5 +1,7 @@
 package com.codecool.drawapp.game_view
 
+import android.content.Context
+import android.graphics.Bitmap
 import android.util.Log
 import com.codecool.drawapp.api.RandomWord
 import com.codecool.drawapp.data_layer.GameLobby
@@ -9,6 +11,7 @@ import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListenerService
 import com.codecool.drawapp.dependency.random_word.RandomWordImplementation
 import com.codecool.drawapp.dependency.random_word.RandomWordService
+import com.codecool.drawapp.dependency.upload_image.UploadService
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -54,4 +57,5 @@ class GamePresenter ( val view : GameContractor) : KoinComponent {
             }
         })
     }
+
 }

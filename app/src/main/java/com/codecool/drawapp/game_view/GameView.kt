@@ -18,14 +18,18 @@ import com.codecool.drawapp.R
 import com.codecool.drawapp.api.ApiSingleton
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
+import com.codecool.drawapp.dependency.upload_image.UploadService
+import com.codecool.drawapp.dependency.upload_image.UploadServiceImplementation
 import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
 import com.muddzdev.quickshot.QuickShot
 import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
 import kotlinx.coroutines.*
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackButtonInterface {
-
+class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainActivity.BackButtonInterface {
+    val uploadService : UploadService by inject()
     lateinit var presenter : GamePresenter
     lateinit var drawFragment: DrawFragment
 
@@ -97,7 +101,8 @@ class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackBut
                 draw.layout(0,0,draw.width,draw.height)
                 draw.draw(canvas)
                 Log.d("GameView", "Bitmap created!")
-
+                uploadService.uploadImage(bitmap,requireContext(), object : UploadServiceImplementation.UploadImageCallback{
+                })
         } ?: run{ Log.d("GameView", "Draw is null!")}
     }
 

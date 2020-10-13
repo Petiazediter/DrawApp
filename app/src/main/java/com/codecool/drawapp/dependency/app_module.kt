@@ -18,6 +18,8 @@ import com.codecool.drawapp.dependency.random_word.RandomWordImplementation
 import com.codecool.drawapp.dependency.random_word.RandomWordService
 import com.codecool.drawapp.dependency.register.RegisterImplementation
 import com.codecool.drawapp.dependency.register.RegisterService
+import com.codecool.drawapp.dependency.upload_image.UploadService
+import com.codecool.drawapp.dependency.upload_image.UploadServiceImplementation
 import org.koin.dsl.module
 
 val appModule = module{
@@ -30,4 +32,5 @@ val appModule = module{
     single<LobbyService>{ LobbyImplementation() }
     single<RandomWordService>{RandomWordImplementation()}
     single<LobbyListenerService>{ LobbyListenerImp() }
+    single<UploadService>{UploadServiceImplementation()}
 }
