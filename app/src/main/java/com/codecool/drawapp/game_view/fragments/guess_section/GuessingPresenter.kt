@@ -26,4 +26,12 @@ class GuessingPresenter(val view : GuessingContractor) : KoinComponent{
             }
         })
     }
+
+    fun setDraw(storageReference: StorageReference) {
+        storageReference.downloadUrl.addOnSuccessListener{
+            Log.d("GuessingPresenter",it.toString())
+            view.loadImage(it)
+        }
+    }
+
 }

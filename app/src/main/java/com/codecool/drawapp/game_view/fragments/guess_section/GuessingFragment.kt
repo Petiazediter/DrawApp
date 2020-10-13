@@ -1,5 +1,6 @@
 package com.codecool.drawapp.game_view.fragments.guess_section
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,12 +10,16 @@ import android.view.ViewGroup
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_guessing.*
 import org.koin.core.KoinComponent
 
 class GuessingFragment(var files : List<StorageReference>, var gameLobby: GameLobby) : Fragment(), GuessingContractor {
 
     data class WordToGuess(val username : String, val word : String)
 
+    lateinit var filteredList : List<WordToGuess>
+    lateinit var filteredListRaw : List<StorageReference>
     lateinit var presenter: GuessingPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,6 +39,24 @@ class GuessingFragment(var files : List<StorageReference>, var gameLobby: GameLo
             Log.d("GuessingFragment", "username : ${l[0]} | word : ${l[1]}")
             WordToGuess(l[0],l[1])}
 
-        Log.d("GuessingFragment", "Filtered list returned : ${names.size}")
+        filteredList = names
+        filteredListRaw = list
+        reloadView()
+    }
+
+    private fun reloadView(){
+        val wordToGuess = filteredList[0]
+        val storageReference = filteredListRaw[0]
+        view?.let{
+            username.text = wordToGuess.username
+            presenter.setDraw(storageReference)
+        }
+    }
+
+    override fun loadImage(uri: Uri) {
+        view?.let{
+            //drawing_iv.
+            Picasso.get().load(uri).into(drawing_iv)
+        }
     }
 }
