@@ -45,8 +45,8 @@ class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackBut
     }
 
     override fun backToMenu() {
-        view?.let{
-        findNavController().navigate(R.id.action_gameView_to_lobbyFragment)}
+        Log.d("GameView", "backToMenu()")
+        findNavController().navigate(R.id.action_gameView_to_mainMenuFragment)
     }
 
     private fun buildRound(){
@@ -87,7 +87,9 @@ class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackBut
     }
 
     override fun requestQuitToMenu() {
+        presenter.unAttach()
         presenter.onQuit(true)
+        Log.d("GameView", "requestQuitToMenu()")
     }
 
     override fun onDestroy() {
@@ -97,5 +99,6 @@ class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackBut
 
     override fun onBackButtonPressed() {
         presenter.onQuit(false)
+        Log.d("GameView", "onBackButtonPressed()")
     }
 }

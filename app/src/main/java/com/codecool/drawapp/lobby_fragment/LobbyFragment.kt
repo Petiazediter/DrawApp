@@ -41,6 +41,11 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener, MainActivity.B
         findNavController().navigate(R.id.action_lobbyFragment_to_mainMenuFragment)
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("LobbyFragment", "onResume()")
+    }
+
     override fun onSuccess(gameLobby : GameLobby) {
         // Success game create
         presenter.joinLobby(gameLobby, this)
