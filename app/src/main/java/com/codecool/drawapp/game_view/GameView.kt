@@ -144,15 +144,17 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
             }
             // Waiting state
             GameState.WAITING.state -> {
-                val waitingFragment = WaitingForOthersFragment(presenter.gameLobby!!)
+                val waitingFragment = WaitingForOthersFragment(presenter.gameLobby!!,this)
                 loadFragment(waitingFragment)
             }
 
             GameState.GUESSING.state -> {
                 files?.let{
                     val guessingFragment = GuessingFragment(it, presenter.gameLobby!!)
+                    Log.d("GameView", "loadGuessingState -> :)")
                     loadFragment(guessingFragment)
-                }
+                } ?: run{
+                    Log.d("GameView", "onAllFilesLoaded() -> :(")}
             }
         }
     }
@@ -173,6 +175,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
     }
 
     fun onAllFilesLoaded(files: List<StorageReference>){
+        Log.d("GameView", "onAllFilesLoaded() -> :)")
         this.files = files
         openFragment(GameState.GUESSING.state)
     }

@@ -16,7 +16,7 @@ import com.google.firebase.storage.StorageReference
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.loading_view.*
 
-class WaitingForOthersFragment(private var gameLobby: GameLobby): Fragment() , WaitingContractor{
+class WaitingForOthersFragment(private var gameLobby: GameLobby, private val gameView: GameView): Fragment() , WaitingContractor{
 
     private lateinit var presenter: WaitingPresenter
 
@@ -39,6 +39,6 @@ class WaitingForOthersFragment(private var gameLobby: GameLobby): Fragment() , W
     }
 
     override fun allFilesLoaded(files: List<StorageReference>){
-        (parentFragment as? GameView)?.onAllFilesLoaded(files)
+       gameView.onAllFilesLoaded(files)
     }
 }
