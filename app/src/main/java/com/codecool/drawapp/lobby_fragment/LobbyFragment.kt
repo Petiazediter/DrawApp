@@ -112,6 +112,7 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener, MainActivity.B
 
     override fun requestQuitToMenu() {
         Log.d("LobbyFragment", "Request to quit!")
+        presenter.unAttach()
         presenter.quitFromLobby(false)
     }
 

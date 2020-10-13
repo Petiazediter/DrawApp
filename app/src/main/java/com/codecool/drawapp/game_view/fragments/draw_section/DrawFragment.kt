@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import com.codecool.drawapp.R
 import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
@@ -40,5 +41,10 @@ class DrawFragment : Fragment() {
         view?.word_tv?.text = word
     }
 
-
+    fun getCanvasView() : View?{
+        view?.let{
+            return it.draw_container[0]
+        }
+        return null
+    }
 }
