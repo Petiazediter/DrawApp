@@ -67,4 +67,7 @@ dependencies {
 
     // Loading Circles
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+
+    // Quick Shot
+    implementation 'com.muddzdev:quickshot:1.3.0'
 }

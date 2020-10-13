@@ -1,5 +1,7 @@
 package com.codecool.drawapp.game_view
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -14,6 +16,7 @@ import com.codecool.drawapp.api.ApiSingleton
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
 import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
+import com.muddzdev.quickshot.QuickShot
 import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
 import kotlinx.coroutines.*
@@ -75,7 +78,24 @@ class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackBut
                 }
             }
 
+            withContext(Dispatchers.Main){
+                view?.let{
+                    saveDrawAsImage()
+                }
+            }
+
         }
+    }
+
+    private fun saveDrawAsImage(){
+        val draw = draw_container
+        val b : Bitmap = Bitmap.createBitmap(draw.layoutParams.width,draw.layoutParams.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(b)
+        draw.layout(draw.left,draw.top,draw.right,draw.bottom)
+        draw.draw(canvas)
+
+        Log.d("GameView()", "Bitmap created!")
+
     }
 
     override fun onLobbyChange(lobby: GameLobby) {
