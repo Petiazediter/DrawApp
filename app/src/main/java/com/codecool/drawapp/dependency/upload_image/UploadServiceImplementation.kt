@@ -15,11 +15,7 @@ import java.util.*
 
 class UploadServiceImplementation : UploadService {
 
-    interface UploadImageCallback{
-
-    }
-
-    override fun uploadImage(bitmap: Bitmap, context : Context,view : UploadImageCallback) {
+    override fun uploadImage(bitmap: Bitmap, context : Context) {
         val file = createFileFromBitmap(bitmap,context)
         val reference = ProjectDatabase.FIREBASE_STORAGE.getReference("test")
         reference.putFile(Uri.fromFile(file))

@@ -101,8 +101,8 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
                 draw.layout(0,0,draw.width,draw.height)
                 draw.draw(canvas)
                 Log.d("GameView", "Bitmap created!")
-                uploadService.uploadImage(bitmap,requireContext(), object : UploadServiceImplementation.UploadImageCallback{
-                })
+                uploadService.uploadImage(bitmap,requireContext())
+
         } ?: run{ Log.d("GameView", "Draw is null!")}
     }
 
@@ -111,7 +111,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
     }
 
     override fun onRoundChange(lobby: GameLobby) {
-        // To Do
+
     }
 
     override fun requestQuitToMenu() {

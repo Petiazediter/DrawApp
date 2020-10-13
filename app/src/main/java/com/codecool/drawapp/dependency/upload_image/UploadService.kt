@@ -4,5 +4,5 @@ import android.content.Context
 import android.graphics.Bitmap
 
 interface UploadService  {
-    fun uploadImage(bitmap : Bitmap, context : Context, view : UploadServiceImplementation.UploadImageCallback)
+    fun uploadImage(bitmap : Bitmap, context : Context)
 }
