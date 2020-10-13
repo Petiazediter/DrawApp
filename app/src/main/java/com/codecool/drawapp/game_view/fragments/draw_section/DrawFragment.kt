@@ -20,6 +20,7 @@ import kotlinx.coroutines.runBlocking
 
 class DrawFragment : Fragment() {
 
+    private var canvasView : CanvasView? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_draw, container, false)
@@ -27,14 +28,16 @@ class DrawFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val canvasView = CanvasView(requireContext())
+        canvasView = CanvasView(requireContext())
+        canvasView?.let{canvasView ->
         view.draw_container.addView(canvasView)
-        Log.d("DrawFragment()", "Canvas view added to frame layout!")
-        erase_button.setOnClickListener { canvasView.setColor(Color.WHITE) }
-        color_black.setOnClickListener { canvasView.setColor(Color.BLACK) }
-        color_blue.setOnClickListener  { canvasView.setColor(Color.BLUE) }
-        color_red.setOnClickListener   { canvasView.setColor(Color.RED) }
-        color_yellow.setOnClickListener { canvasView.setColor(Color.YELLOW) }
+            Log.d("DrawFragment()", "Canvas view added to frame layout!")
+            erase_button.setOnClickListener { canvasView.setColor(Color.WHITE) }
+            color_black.setOnClickListener { canvasView.setColor(Color.BLACK) }
+            color_blue.setOnClickListener  { canvasView.setColor(Color.BLUE) }
+            color_red.setOnClickListener   { canvasView.setColor(Color.RED) }
+            color_yellow.setOnClickListener { canvasView.setColor(Color.YELLOW) }
+        }
     }
 
     fun setWord(word: String) {
@@ -42,8 +45,9 @@ class DrawFragment : Fragment() {
     }
 
     fun getCanvasView() : View?{
-        view?.let{
-            return it.draw_container[0]
+        canvasView?.let{
+            Log.d("DrawFragment", "Width : ${it.width}  | Height : ${it.height}")
+            return it
         }
         return null
     }

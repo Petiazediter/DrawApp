@@ -92,30 +92,13 @@ class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackBut
     private fun saveDrawAsImage(){
         val draw = drawFragment.getCanvasView()
         draw?.let{draw ->
-            if ( draw.layoutParams.width > 0 && draw.layoutParams.height > 0) {
-                val b: Bitmap = Bitmap.createBitmap(
-                    draw.layoutParams.width,
-                    draw.layoutParams.height,
-                    Bitmap.Config.ARGB_8888
-                )
-                val canvas = Canvas(b)
-                draw.layout(draw.left, draw.top, draw.right, draw.bottom)
+                val bitmap = Bitmap.createBitmap(draw.width, draw.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                draw.layout(0,0,draw.width,draw.height)
                 draw.draw(canvas)
+                Log.d("GameView", "Bitmap created!")
 
-                Log.d("GameView()", "Bitmap created!")
-            } else {
-                draw.measure(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT)
-                val b = Bitmap.createBitmap(
-                    draw.measuredWidth,
-                    draw.measuredHeight,
-                    Bitmap.Config.ARGB_8888
-                )
-                val canvas = Canvas(b)
-                draw.layout(0,0, draw.measuredWidth,draw.measuredHeight)
-                draw.draw(canvas)
-                Log.d("GameView","Bitmap created! (v.2)")
-            }
-        }
+        } ?: run{ Log.d("GameView", "Draw is null!")}
     }
 
     override fun onLobbyChange(lobby: GameLobby) {
