@@ -20,4 +20,6 @@
     <string name="decline_button_for_friend_inve">Decline button for friend inve</string>
     <string name="join">Join</string>
     <string name="i_already_have_an_account">I already have an account!</string>
+    <string name="ok">OK</string>
+    <string name="what_is_it">What is it?</string>
 </resources>
