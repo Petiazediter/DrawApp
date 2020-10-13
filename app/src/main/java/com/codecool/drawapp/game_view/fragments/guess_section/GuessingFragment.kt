@@ -55,8 +55,16 @@ class GuessingFragment(var files : List<StorageReference>, var gameLobby: GameLo
 
     override fun loadImage(uri: Uri) {
         view?.let{
-            //drawing_iv.
             Picasso.get().load(uri).into(drawing_iv)
+            ok_button.setOnClickListener {
+                filteredList.drop(1)
+                filteredListRaw.drop(1)
+                if ( filteredList.size > 0){
+                    reloadView()
+                } else {
+                    Log.d("GuessingFragment", "Voted to everybody :)")
+                }
+            }
         }
     }
 }
