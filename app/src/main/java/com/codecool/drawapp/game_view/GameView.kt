@@ -21,6 +21,7 @@ import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
 import com.codecool.drawapp.dependency.upload_image.UploadService
 import com.codecool.drawapp.dependency.upload_image.UploadServiceImplementation
 import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
+import com.codecool.drawapp.game_view.fragments.wait_section.WaitingForOthersFragment
 import com.muddzdev.quickshot.QuickShot
 import kotlinx.android.synthetic.main.fragment_draw.*
 import kotlinx.android.synthetic.main.fragment_draw.view.*
@@ -28,7 +29,18 @@ import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
+
 class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainActivity.BackButtonInterface {
+
+    private enum class GameState(val state : Int){
+        DRAWING(1),
+        WAITING(2),
+        GUESSING(3),
+        REVEALING(4),
+        SCORES(5)
+    }
+
+    private var currentState = GameState.DRAWING.state
     val uploadService : UploadService by inject()
     lateinit var presenter : GamePresenter
     lateinit var drawFragment: DrawFragment
@@ -45,7 +57,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
             gameLobby?.let{
                 presenter = GamePresenter(this)
                 presenter.attachToListener(this,gameLobby)
-                buildRound()
+                openFragment(GameState.DRAWING.state)
             } ?: run {
                 Log.d( "GameView", "onViewCreated() -> No gameId argument!")
                 backToMenu()}
@@ -59,14 +71,6 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
         findNavController().navigate(R.id.action_gameView_to_mainMenuFragment)
     }
 
-    private fun buildRound(){
-        drawFragment = DrawFragment()
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, drawFragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-        presenter.getRandomWord()
-    }
 
     override fun getWord(word: String) {
         drawFragment.setWord(word)
@@ -87,6 +91,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
             withContext(Dispatchers.Main){
                 view?.let{
                     saveDrawAsImage()
+                    openFragment(GameState.WAITING.state)
                 }
             }
 
@@ -101,14 +106,11 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
                 draw.layout(0,0,draw.width,draw.height)
                 draw.draw(canvas)
                 Log.d("GameView", "Bitmap created!")
-                uploadService.uploadImage(bitmap,requireContext())
-
+                uploadService.uploadImage(bitmap,requireContext(),presenter.gameLobby!!)
         } ?: run{ Log.d("GameView", "Draw is null!")}
     }
 
-    override fun onLobbyChange(lobby: GameLobby) {
-        Log.d("GameView", "onLobbyChange() -> LobbyChanged")
-    }
+
 
     override fun onRoundChange(lobby: GameLobby) {
 
@@ -128,5 +130,37 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
     override fun onBackButtonPressed() {
         presenter.onQuit(false)
         Log.d("GameView", "onBackButtonPressed()")
+    }
+
+    private fun openFragment(state : Int){
+        currentState = state
+        when ( state ){
+            // Drawing state
+            GameState.DRAWING.state -> {
+                drawFragment = DrawFragment()
+                loadFragment(drawFragment)
+                presenter.getRandomWord()
+            }
+            // Waiting state
+            GameState.WAITING.state -> {
+                val waitingFragment = WaitingForOthersFragment(presenter.gameLobby!!)
+                loadFragment(waitingFragment)
+            }
+        }
+    }
+
+    private fun loadFragment(fragment : Fragment){
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    override fun onLobbyChange(lobby: GameLobby) {
+        Log.d("GameView", "onLobbyChange() -> LobbyChanged")
+        if ( currentState == GameState.WAITING.state){
+            val waitingFragment = parentFragmentManager.fragments[0] as? WaitingForOthersFragment
+            waitingFragment?.onLobbyChanged(lobby)
+        }
     }
 }

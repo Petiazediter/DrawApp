@@ -15,10 +15,10 @@ import com.codecool.drawapp.dependency.upload_image.UploadService
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class GamePresenter ( val view : GameContractor) : KoinComponent {
-    val apiService : RandomWordService by inject()
-    val lobbyListenerService : LobbyListenerService by inject()
-    val lobbyService : LobbyService by inject()
+ class GamePresenter (val view : GameContractor) : KoinComponent {
+    private val apiService : RandomWordService by inject()
+    private val lobbyListenerService : LobbyListenerService by inject()
+    private val lobbyService : LobbyService by inject()
     var gameLobby : GameLobby? = null
 
     fun getRandomWord() {
@@ -57,5 +57,4 @@ class GamePresenter ( val view : GameContractor) : KoinComponent {
             }
         })
     }
-
 }

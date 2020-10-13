@@ -5,23 +5,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.codecool.drawapp.MainActivity
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
+import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.loading_view.*
 
-class WaitingForOthersFragment : Fragment() , WaitingContractor{
+class WaitingForOthersFragment(private var gameLobby: GameLobby): Fragment() , WaitingContractor{
 
     private lateinit var presenter: WaitingPresenter
-    private var lobby : GameLobby? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        presenter = WaitingPresenter(this)
         return inflater.inflate(R.layout.fragment_waiting, container, false)
     }
 
-    public fun setGameLobby(gameLobby: GameLobby){
-        lobby = gameLobby
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter = WaitingPresenter(this)
+        loading_bar.visibility = View.VISIBLE
+        loading_bar.startRippleAnimation()
+        Toasty.info(requireContext(), "Let's wait for the others :)", Toasty.LENGTH_SHORT).show()
+        presenter.isLobbyReady(gameLobby)
     }
+
+    fun onLobbyChanged(lobby: GameLobby) {
+        gameLobby = lobby
+        presenter.gameLobby = lobby
+    }
+
 }
