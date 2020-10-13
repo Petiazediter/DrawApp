@@ -71,7 +71,7 @@ class GameView : Fragment(), GameContractor, LobbyListener, MainActivity.BackBut
 
     private fun startTimer() {
         GlobalScope.launch {
-            (0..1).forEach {num ->
+            (0..10).forEach {num ->
                 delay(1000)
                 withContext(Dispatchers.Main) {
                     view?.let {
