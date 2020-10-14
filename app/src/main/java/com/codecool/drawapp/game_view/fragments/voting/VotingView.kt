@@ -10,6 +10,7 @@ import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.data_layer.VoteWrapper
 import com.codecool.drawapp.game_view.GameViewInterface
+import com.google.firebase.storage.StorageReference
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_voting.*
 import kotlinx.android.synthetic.main.loading_view.*
@@ -19,7 +20,7 @@ interface VotingViewInterface{
 
 }
 
-class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface) : VotingContractor, Fragment(), GameViewInterface {
+class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface, val files : List<StorageReference>?) : VotingContractor, Fragment(), GameViewInterface {
 
     lateinit var presenter: VotingPresenter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,5 +55,7 @@ class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface) :
         val adapter = VoteRecyclerAdapter(votes[0], LayoutInflater.from(requireContext()))
         recycler_list.adapter = adapter
         recycler_list.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+
     }
 }

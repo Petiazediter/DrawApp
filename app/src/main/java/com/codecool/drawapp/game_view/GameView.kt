@@ -165,7 +165,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
             }
 
             GameState.REVEALING.state -> {
-                loadFragment(VotingView(presenter.gameLobby!!, this))
+                loadFragment(VotingView(presenter.gameLobby!!, this, files))
             }
         }
     }
