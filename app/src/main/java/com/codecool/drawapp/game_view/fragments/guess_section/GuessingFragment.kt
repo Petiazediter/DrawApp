@@ -9,13 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
+import com.codecool.drawapp.game_view.GameView
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_guessing.*
 import org.koin.core.KoinComponent
 
-class GuessingFragment(var files : List<StorageReference>, var gameLobby: GameLobby) : Fragment(), GuessingContractor {
+class GuessingFragment(var files : List<StorageReference>, var gameLobby: GameLobby,val gameView : GuessingFragmentCallback) : Fragment(), GuessingContractor {
 
+    interface GuessingFragmentCallback{
+        fun votedToEveryBody()
+    }
     data class WordToGuess(val username : String, val word : String)
 
     lateinit var filteredList : List<WordToGuess>
@@ -57,12 +61,12 @@ class GuessingFragment(var files : List<StorageReference>, var gameLobby: GameLo
         view?.let{
             Picasso.get().load(uri).into(drawing_iv)
             ok_button.setOnClickListener {
-                filteredList.drop(1)
-                filteredListRaw.drop(1)
+                filteredList = filteredList.drop(1)
+                filteredListRaw = filteredListRaw.drop(1)
                 if ( filteredList.size > 0){
                     reloadView()
                 } else {
-                    Log.d("GuessingFragment", "Voted to everybody :)")
+                    gameView.votedToEveryBody()
                 }
             }
         }

@@ -22,6 +22,8 @@ import com.codecool.drawapp.dependency.upload_image.UploadService
 import com.codecool.drawapp.dependency.upload_image.UploadServiceImplementation
 import com.codecool.drawapp.game_view.fragments.draw_section.DrawFragment
 import com.codecool.drawapp.game_view.fragments.guess_section.GuessingFragment
+import com.codecool.drawapp.game_view.fragments.voting.VotingView
+import com.codecool.drawapp.game_view.fragments.voting.VotingViewInterface
 import com.codecool.drawapp.game_view.fragments.wait_section.WaitingForOthersFragment
 import com.google.firebase.storage.StorageReference
 import com.muddzdev.quickshot.QuickShot
@@ -32,7 +34,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 
-class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainActivity.BackButtonInterface {
+class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainActivity.BackButtonInterface, GuessingFragment.GuessingFragmentCallback, VotingViewInterface {
 
     private enum class GameState(val state : Int){
         DRAWING(1),
@@ -150,11 +152,15 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
 
             GameState.GUESSING.state -> {
                 files?.let{
-                    val guessingFragment = GuessingFragment(it, presenter.gameLobby!!)
+                    val guessingFragment = GuessingFragment(it, presenter.gameLobby!!,this)
                     Log.d("GameView", "loadGuessingState -> :)")
                     loadFragment(guessingFragment)
                 } ?: run{
                     Log.d("GameView", "onAllFilesLoaded() -> :(")}
+            }
+
+            GameState.REVEALING.state -> {
+                loadFragment(VotingView(presenter.gameLobby!!, this))
             }
         }
     }
@@ -178,5 +184,9 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
         Log.d("GameView", "onAllFilesLoaded() -> :)")
         this.files = files
         openFragment(GameState.GUESSING.state)
+    }
+
+    override fun votedToEveryBody() {
+        openFragment(GameState.REVEALING.state)
     }
 }
