@@ -193,4 +193,30 @@ class LobbyImplementation : LobbyService,KoinComponent {
             override fun onFail() {}
         })
     }
+
+    interface GetGuessingsInterface{
+        fun callback(votes : List<Vote>)
+    }
+
+    override fun getGuessings(gameLobby: GameLobby,view : GetGuessingsInterface) {
+        val reference = ProjectDatabase.FIREBASE_DB.getReference("games")
+            .child(gameLobby.gameId)
+            .child("votes")
+            .child(gameLobby.round.toString())
+
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val list = arrayListOf<Vote>()
+                (snapshot.children).forEachIndexed { originalWord, voteRaw ->
+                    val votes = voteRaw.children.map{ it.getValue(Vote::class.java)!!}
+                        .forEach { list.add(it) }
+                }
+                view.callback(list)
+            }
+        })
+    }
 }

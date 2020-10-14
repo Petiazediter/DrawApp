@@ -41,9 +41,12 @@ class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface) :
         presenter.gameLobby = gameLobby
     }
 
-    override fun everyBodyVoted() {
-        loading_bar.visibility = View.GONE
-        linear_layout_vote.visibility = View.VISIBLE
+    override fun everyBodyGuessed() {
 
+        presenter.loadGuessings()
+        /*
+            loading_bar.visibility = View.GONE
+            linear_layout_vote.visibility = View.VISIBLE
+        */
     }
 }

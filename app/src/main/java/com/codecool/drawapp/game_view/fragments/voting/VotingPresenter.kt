@@ -5,6 +5,8 @@ import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.data_layer.ProjectDatabase
 import com.codecool.drawapp.data_layer.Vote
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueryService
+import com.codecool.drawapp.dependency.lobby.LobbyImplementation
+import com.codecool.drawapp.dependency.lobby.LobbyService
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -15,15 +17,17 @@ import org.koin.ext.getScopeId
 class VotingPresenter(val view : VotingContractor) : KoinComponent {
 
     val basicDatabaseQueryService : BasicDatabaseQueryService by inject()
+    val lobbyService : LobbyService by inject()
+
     lateinit var gameLobby: GameLobby
 
     fun startLoading(gameLobby : GameLobby){
         this.gameLobby = gameLobby
-        isEveryBodyVoted()
+        isEveryBodyGuessed()
         Log.d("VotingPresenter", "startLoading()")
     }
 
-    private fun isEveryBodyVoted(){
+    private fun isEveryBodyGuessed(){
         Log.d("VotingPresenter", "Loading started again!")
         // Here we want to know everybody voted for every picture
         val votes = ProjectDatabase.FIREBASE_DB.getReference("games")
@@ -41,10 +45,19 @@ class VotingPresenter(val view : VotingContractor) : KoinComponent {
                         sumOfVotes += originalWord.children.toList().size
                     }
                     Log.d("VotingPresenter", "Summary of votes : $sumOfVotes")
-                    if ( sumOfVotes != (gameLobby.players.size * gameLobby.players.size)) isEveryBodyVoted()
-                    else view.everyBodyVoted()
+                    if ( sumOfVotes != (gameLobby.players.size * gameLobby.players.size)) isEveryBodyGuessed()
+                    else view.everyBodyGuessed()
                 } else Log.d("VotingPresenter", "No such snapshot")
             }
         })
     }
+
+    fun loadGuessings(){
+        lobbyService.getGuessings(gameLobby, object : LobbyImplementation.GetGuessingsInterface{
+            override fun callback(votes: List<Vote>) {
+
+            }
+        })
+    }
+
 }

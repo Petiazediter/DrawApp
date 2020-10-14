@@ -1,8 +1,8 @@
 package com.codecool.drawapp.data_layer
 
 class Vote() {
-    lateinit var userName : String
-    lateinit var guessedWord : String
+    var userName : String = "none"
+    var guessedWord : String = "none"
     var usersVoted : List<User>? = null
 
     constructor(userName : String, guessedWord : String, usersVoted : List<User>?) : this(){
@@ -10,4 +10,5 @@ class Vote() {
         this.guessedWord = guessedWord
         this.usersVoted = usersVoted
     }
+
 }
