@@ -180,14 +180,14 @@ class LobbyImplementation : LobbyService,KoinComponent {
         })
     }
 
-    override fun addGuessWord(gameLobby: GameLobby, word: String,isTheOriginal : Boolean) {
+    override fun addGuessWord(gameLobby: GameLobby, word: String,originalWord : String) {
         basicDatabaseQueryService.getMyUserFromDatabase(object : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
+
             override fun onSuccess(user : User){
                 val ref = ProjectDatabase.FIREBASE_DB.getReference("games").child(gameLobby.gameId)
                     .child("votes").child(gameLobby.round.toString())
-                val key = ref.push().key
-                val originalWord = Vote(userName = user.userName, guessedWord = word, isTheOriginal = isTheOriginal)
-                ref.child(key.toString()).setValue(originalWord)
+                val vote = Vote(user.userName, word, listOf())
+                ref.child(originalWord).child(user.userName).setValue(vote)
             }
 
             override fun onFail() {}

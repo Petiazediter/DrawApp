@@ -12,5 +12,5 @@ interface LobbyService {
     fun joinLobby ( lobbyId : String, view : LobbyImplementation.JoinLobbyCallback)
     fun startLobby ( lobby : GameLobby, view : LobbyImplementation.StartLobbyCallback)
     fun findLobbyById(id : String, view : LobbyImplementation.FindLobbyCallback)
-    fun addGuessWord(gameLobby: GameLobby, word : String, isTheOriginal : Boolean)
+    fun addGuessWord(gameLobby: GameLobby, word : String, originalWord : String)
 }

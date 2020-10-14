@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import com.codecool.drawapp.api.RandomWord
 import com.codecool.drawapp.data_layer.GameLobby
+import com.codecool.drawapp.data_layer.Vote
 import com.codecool.drawapp.dependency.lobby.LobbyImplementation
 import com.codecool.drawapp.dependency.lobby.LobbyService
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
@@ -59,6 +60,7 @@ import org.koin.core.inject
     }
 
      fun createListToUsersWord(word: String){
-         gameLobby?.let{ lobbyService.addGuessWord(it, word,true) }
+         gameLobby?.let{
+             lobbyService.addGuessWord(it, word, word) }
      }
  }
