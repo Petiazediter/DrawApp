@@ -2,10 +2,7 @@ package com.codecool.drawapp.dependency.lobby
 
 import android.renderscript.Sampler
 import android.util.Log
-import com.codecool.drawapp.data_layer.GameLobby
-import com.codecool.drawapp.data_layer.ProjectDatabase
-import com.codecool.drawapp.data_layer.User
-import com.codecool.drawapp.data_layer.Vote
+import com.codecool.drawapp.data_layer.*
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueries
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueryService
 import com.google.firebase.database.DataSnapshot
@@ -195,7 +192,7 @@ class LobbyImplementation : LobbyService,KoinComponent {
     }
 
     interface GetGuessingsInterface{
-        fun callback(votes : List<Vote>)
+        fun callback(votes : List<VoteWrapper>)
     }
 
     override fun getGuessings(gameLobby: GameLobby,view : GetGuessingsInterface) {
@@ -210,10 +207,11 @@ class LobbyImplementation : LobbyService,KoinComponent {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val list = arrayListOf<Vote>()
-                (snapshot.children).forEachIndexed { originalWord, voteRaw ->
+                val list = arrayListOf<VoteWrapper>()
+                (snapshot.children).forEach { voteRaw ->
+                    val originalWord = voteRaw.key.toString()
                     val votes = voteRaw.children.map{ it.getValue(Vote::class.java)!!}
-                        .forEach { list.add(it) }
+                    list.add(VoteWrapper(originalWord, votes))
                 }
                 view.callback(list)
             }

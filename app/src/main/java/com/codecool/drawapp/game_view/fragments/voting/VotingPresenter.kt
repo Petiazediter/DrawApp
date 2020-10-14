@@ -4,6 +4,7 @@ import android.util.Log
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.data_layer.ProjectDatabase
 import com.codecool.drawapp.data_layer.Vote
+import com.codecool.drawapp.data_layer.VoteWrapper
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueryService
 import com.codecool.drawapp.dependency.lobby.LobbyImplementation
 import com.codecool.drawapp.dependency.lobby.LobbyService
@@ -54,8 +55,8 @@ class VotingPresenter(val view : VotingContractor) : KoinComponent {
 
     fun loadGuessings(){
         lobbyService.getGuessings(gameLobby, object : LobbyImplementation.GetGuessingsInterface{
-            override fun callback(votes: List<Vote>) {
-
+            override fun callback(votes: List<VoteWrapper>) {
+                view.setUpAdapter(votes)
             }
         })
     }

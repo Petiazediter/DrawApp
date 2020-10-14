@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
-import com.codecool.drawapp.game_view.GameView
+import com.codecool.drawapp.data_layer.VoteWrapper
 import com.codecool.drawapp.game_view.GameViewInterface
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_voting.*
@@ -42,11 +43,16 @@ class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface) :
     }
 
     override fun everyBodyGuessed() {
-
         presenter.loadGuessings()
-        /*
-            loading_bar.visibility = View.GONE
-            linear_layout_vote.visibility = View.VISIBLE
-        */
+    }
+
+    override fun setUpAdapter(votes: List<VoteWrapper>) {
+        loading_bar.visibility = View.GONE
+        linear_layout_vote.visibility = View.VISIBLE
+        loading_bar.stopRippleAnimation()
+
+        val adapter = VoteRecyclerAdapter(votes[0], LayoutInflater.from(requireContext()))
+        recycler_list.adapter = adapter
+        recycler_list.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 }
