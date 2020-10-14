@@ -7,23 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
+import com.codecool.drawapp.game_view.GameView
+import com.codecool.drawapp.game_view.GameViewInterface
 
 interface VotingViewInterface{
 
 }
 
-class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface) : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface) : Fragment(), GameViewInterface {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_voting, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onLobbyChange(gameLobby: GameLobby) {
 
     }
 }

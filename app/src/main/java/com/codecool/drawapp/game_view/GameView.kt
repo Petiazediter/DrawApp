@@ -34,6 +34,10 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 
+interface GameViewInterface{
+    fun onLobbyChange(gameLobby: GameLobby)
+}
+
 class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainActivity.BackButtonInterface, GuessingFragment.GuessingFragmentCallback, VotingViewInterface {
 
     private enum class GameState(val state : Int){
@@ -174,10 +178,8 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
 
     override fun onLobbyChange(lobby: GameLobby) {
         Log.d("GameView", "onLobbyChange() -> LobbyChanged")
-        if ( currentState == GameState.WAITING.state){
-            val waitingFragment = parentFragmentManager.fragments[0] as? WaitingForOthersFragment
-            waitingFragment?.onLobbyChanged(lobby)
-        }
+        val fragment = parentFragmentManager.fragments[0] as? GameViewInterface
+        fragment?.onLobbyChange(lobby)
     }
 
     fun onAllFilesLoaded(files: List<StorageReference>){

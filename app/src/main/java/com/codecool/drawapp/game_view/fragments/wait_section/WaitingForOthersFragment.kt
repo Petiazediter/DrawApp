@@ -12,11 +12,12 @@ import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.dependency.lobby.lobby_listener.LobbyListener
 import com.codecool.drawapp.game_view.GameView
+import com.codecool.drawapp.game_view.GameViewInterface
 import com.google.firebase.storage.StorageReference
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.loading_view.*
 
-class WaitingForOthersFragment(private var gameLobby: GameLobby, private val gameView: GameView): Fragment() , WaitingContractor{
+class WaitingForOthersFragment(private var gameLobby: GameLobby, private val gameView: GameView): Fragment() , WaitingContractor, GameViewInterface{
 
     private lateinit var presenter: WaitingPresenter
 
@@ -33,7 +34,7 @@ class WaitingForOthersFragment(private var gameLobby: GameLobby, private val gam
         presenter.isLobbyReady(gameLobby)
     }
 
-    fun onLobbyChanged(lobby: GameLobby) {
+    override fun onLobbyChange(lobby: GameLobby) {
         gameLobby = lobby
         presenter.gameLobby = lobby
     }
