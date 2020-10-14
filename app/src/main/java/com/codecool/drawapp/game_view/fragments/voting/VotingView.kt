@@ -26,6 +26,7 @@ interface VotingViewInterface{
 class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface, val files : List<StorageReference>) : VotingContractor, Fragment(), GameViewInterface, VoteRecyclerInterface {
 
     lateinit var presenter: VotingPresenter
+    lateinit var votes: List<VoteWrapper>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -52,6 +53,8 @@ class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface, v
     }
 
     override fun setUpAdapter(votes: List<VoteWrapper>) {
+        this.votes = votes
+
         loading_bar.visibility = View.GONE
         linear_layout_vote.visibility = View.VISIBLE
         loading_bar.stopRippleAnimation()
@@ -66,6 +69,7 @@ class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface, v
     }
 
     override fun voteForWord(word: String) {
-
+        presenter.voteForWord(word,votes[0].originalWord)
     }
+
 }

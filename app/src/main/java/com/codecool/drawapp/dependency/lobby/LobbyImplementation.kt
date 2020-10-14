@@ -217,4 +217,56 @@ class LobbyImplementation : LobbyService,KoinComponent {
             }
         })
     }
+
+    interface VoteForWordInterface {
+        fun callbackSuccess()
+        fun callbackFail(errorMsg: String)
+    }
+
+    override fun voteForWord(word: String,originalWord: String,gameLobby: GameLobby,view : VoteForWordInterface) {
+        basicDatabaseQueryService.getMyUserFromDatabase(object  : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
+            override fun onFail() {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSuccess(user: User) {
+                val reference = ProjectDatabase.FIREBASE_DB.getReference("games")
+                    .child(gameLobby.gameId)
+                    .child("votes")
+                    .child(gameLobby.round.toString())
+                    .child(originalWord)
+
+                reference.addListenerForSingleValueEvent( object : ValueEventListener{
+                    override fun onCancelled(error: DatabaseError) {}
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if ( snapshot.exists() ) {
+                            // val usersGuess : DataSnapshot = snapshot.children.find{ it.getValue(Vote::class.java)!!.userName == user.userName}!!
+                            val usersGuess = snapshot.child(user.userName)
+                            if (usersGuess.getValue(Vote::class.java)!!.guessedWord == originalWord) {
+                                // You can't vote for your own draw
+                                view.callbackFail("You can't vote because you drew this. You remember?")
+
+                            } else if (usersGuess.child(originalWord).child(user.userName)
+                                    .getValue(Vote::class.java)!!.guessedWord == word) {
+                                // if you voted for your own word somebody others draw
+                                view.callbackFail("Yes, I know your answer is a so good bait, but don't fall for it! :)")
+                            }else{
+                                val currentGuess : DataSnapshot = snapshot.child(originalWord)
+                                val currentGuessAsVote = currentGuess.getValue(Vote::class.java)!!
+
+                                // Voting for the user's word
+                                currentGuessAsVote.usersVoted?.let{
+                                    it.toMutableList().add(user)
+                                } ?: run { currentGuessAsVote.usersVoted = listOf(user) }
+
+                                reference.child(currentGuess.key.toString()).setValue(currentGuessAsVote)
+                                view.callbackSuccess()
+                            }
+                        }
+                    }
+                })
+            }
+        })
+    }
 }

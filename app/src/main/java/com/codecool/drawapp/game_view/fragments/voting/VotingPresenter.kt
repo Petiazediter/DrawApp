@@ -61,4 +61,16 @@ class VotingPresenter(val view : VotingContractor) : KoinComponent {
         })
     }
 
+    fun voteForWord(word: String, originalWord : String) {
+        lobbyService.voteForWord(word,originalWord,gameLobby,object : LobbyImplementation.VoteForWordInterface{
+            override fun callbackFail(errorMsg: String) {
+                Log.d("VotingPresenter", "Error -> $errorMsg")
+            }
+
+            override fun callbackSuccess() {
+                Log.d("VotingPresenter", "Success -> :)")
+            }
+        })
+    }
+
 }

@@ -10,7 +10,7 @@ import com.codecool.drawapp.data_layer.VoteWrapper
 import kotlinx.android.synthetic.main.guess_row.view.*
 
 interface VoteRecyclerInterface{
-    fun voteForWord ( word : String )
+    fun voteForWord ( word : String)
 }
 
 class VoteRecyclerAdapter(val voteWrapper: VoteWrapper, val layoutInflater: LayoutInflater, val view :  VoteRecyclerInterface) :
