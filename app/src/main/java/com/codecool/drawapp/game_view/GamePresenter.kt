@@ -57,4 +57,8 @@ import org.koin.core.inject
             }
         })
     }
-}
+
+     fun createListToUsersWord(word: String){
+         gameLobby?.let{ lobbyService.addGuessWord(it, word,true) }
+     }
+ }

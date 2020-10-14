@@ -116,6 +116,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
                 draw.draw(canvas)
                 Log.d("GameView", "Bitmap created!")
                 uploadService.uploadImage(bitmap,requireContext(),presenter.gameLobby!!, drawFragment.view?.word_tv?.text.toString())
+                presenter.createListToUsersWord(drawFragment.view?.word_tv?.text.toString())
         } ?: run{ Log.d("GameView", "Draw is null!")}
     }
 

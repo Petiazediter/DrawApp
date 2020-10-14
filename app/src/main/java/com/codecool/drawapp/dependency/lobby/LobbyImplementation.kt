@@ -5,6 +5,7 @@ import android.util.Log
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.data_layer.ProjectDatabase
 import com.codecool.drawapp.data_layer.User
+import com.codecool.drawapp.data_layer.Vote
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueries
 import com.codecool.drawapp.dependency.basic_queries.BasicDatabaseQueryService
 import com.google.firebase.database.DataSnapshot
@@ -176,6 +177,20 @@ class LobbyImplementation : LobbyService,KoinComponent {
                 if ( snapshot.exists()) view.onCompleted(snapshot.getValue(GameLobby::class.java))
                 else view.onCompleted(null)
             }
+        })
+    }
+
+    override fun addGuessWord(gameLobby: GameLobby, word: String,isTheOriginal : Boolean) {
+        basicDatabaseQueryService.getMyUserFromDatabase(object : BasicDatabaseQueries.getMyUserFromDatabaseCallback{
+            override fun onSuccess(user : User){
+                val ref = ProjectDatabase.FIREBASE_DB.getReference("games").child(gameLobby.gameId)
+                    .child("votes").child(gameLobby.round.toString())
+                val key = ref.push().key
+                val originalWord = Vote(userName = user.userName, guessedWord = word, isTheOriginal = isTheOriginal)
+                ref.child(key.toString()).setValue(originalWord)
+            }
+
+            override fun onFail() {}
         })
     }
 }
