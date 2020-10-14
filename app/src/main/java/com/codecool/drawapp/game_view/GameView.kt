@@ -50,7 +50,7 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
 
     private var files: List<StorageReference>? = null
     private var currentState = GameState.DRAWING.state
-    val uploadService : UploadService by inject()
+    private val uploadService : UploadService by inject()
     lateinit var presenter : GamePresenter
     lateinit var drawFragment: DrawFragment
 
@@ -165,7 +165,9 @@ class GameView : Fragment(), GameContractor,KoinComponent, LobbyListener, MainAc
             }
 
             GameState.REVEALING.state -> {
-                loadFragment(VotingView(presenter.gameLobby!!, this, files))
+                files?.let{
+                    loadFragment(VotingView(presenter.gameLobby!!, this, it))
+                }
             }
         }
     }

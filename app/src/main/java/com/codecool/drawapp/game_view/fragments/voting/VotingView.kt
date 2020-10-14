@@ -11,8 +11,11 @@ import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.data_layer.VoteWrapper
 import com.codecool.drawapp.game_view.GameViewInterface
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.fragment_guessing.*
 import kotlinx.android.synthetic.main.fragment_voting.*
+import kotlinx.android.synthetic.main.fragment_voting.drawing_iv
 import kotlinx.android.synthetic.main.loading_view.*
 import kotlinx.android.synthetic.main.loading_view.view.*
 
@@ -20,9 +23,10 @@ interface VotingViewInterface{
 
 }
 
-class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface, val files : List<StorageReference>?) : VotingContractor, Fragment(), GameViewInterface {
+class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface, val files : List<StorageReference>) : VotingContractor, Fragment(), GameViewInterface, VoteRecyclerInterface {
 
     lateinit var presenter: VotingPresenter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_voting, container, false)
@@ -52,10 +56,16 @@ class VotingView(val gameLobby: GameLobby ,val gameView : VotingViewInterface, v
         linear_layout_vote.visibility = View.VISIBLE
         loading_bar.stopRippleAnimation()
 
-        val adapter = VoteRecyclerAdapter(votes[0], LayoutInflater.from(requireContext()))
+        val adapter = VoteRecyclerAdapter(votes[0], LayoutInflater.from(requireContext()),this)
         recycler_list.adapter = adapter
         recycler_list.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        files[0].downloadUrl.addOnSuccessListener {
+            Picasso.get().load(it.toString()).into(drawing_iv)
+        }
+    }
+
+    override fun voteForWord(word: String) {
 
     }
 }
