@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.codecool.drawapp.R
 import com.codecool.drawapp.data_layer.GameLobby
 import com.codecool.drawapp.game_view.GameView
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_guessing.*
 import org.koin.core.KoinComponent
 
@@ -61,6 +63,11 @@ class GuessingFragment(var files : List<StorageReference>, var gameLobby: GameLo
         view?.let{
             Picasso.get().load(uri).into(drawing_iv)
             ok_button.setOnClickListener {
+                if ( guess_et.text.toString() == filteredList[0].word) {
+                    Toasty.error(requireContext(), "Oops! That's the original word! Choose something else to bait your friends!",Toasty.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+                presenter.voteWord(gameLobby = gameLobby, guessWord = guess_et.text.toString(),originalWord = filteredList[0].word)
                 filteredList = filteredList.drop(1)
                 filteredListRaw = filteredListRaw.drop(1)
                 if ( filteredList.size > 0){
