@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/transparent"
+    android:background="@color/colorPrimary"
     tools:context=".register_fragment.RegisterFragment">
 
     <androidx.cardview.widget.CardView
@@ -92,20 +92,18 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/waves"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_waves"
-        app:layout_constraintBottom_toTopOf="@id/sign_in_button_layout"
-        android:scaleType="fitXY"/>
-
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_blurb"/>
     <LinearLayout
         android:id="@+id/sign_in_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:background="#0099FF"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintRight_toRightOf="parent">
     <TextView
         android:padding="20dp"
