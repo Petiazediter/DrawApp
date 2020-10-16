@@ -23,4 +23,5 @@
     <string name="ok">OK</string>
     <string name="what_is_it">What is it?</string>
     <string name="what_was_the_original_word">What was the original word?</string>
+    <string name="i_don_t_have_an_account_yet">I don\'t have an account yet!</string>
 </resources>
