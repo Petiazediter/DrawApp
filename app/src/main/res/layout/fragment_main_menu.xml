@@ -6,14 +6,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main_page_fragment.MainMenuFragment">
 
-    <ImageView
-        android:id="@+id/waves"
+
+
+
+    <include
+        layout="@layout/background_layout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ImageView
+        android:id="@+id/log_out_button2"
+        android:layout_margin="40dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/ic_waves"/>
+        android:src="@drawable/ic_smallbtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ImageView
+        android:src="@drawable/ic_logout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        android:layout_margin="10dp"
+        app:tint="@color/mainTextColor"
+        app:layout_constraintTop_toTopOf="@id/log_out_button2"
+        app:layout_constraintBottom_toBottomOf="@id/log_out_button2"
+        app:layout_constraintLeft_toLeftOf="@id/log_out_button2"
+        app:layout_constraintRight_toRightOf="@id/log_out_button2"/>
+
+
+
     <GridLayout
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
