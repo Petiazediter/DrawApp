@@ -31,6 +31,11 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="AccentButton" parent="Base.TextAppearance.AppCompat.Button.CustomButton">
+        <item name="android:backgroundTint">@color/colorAccent</item>
+        <item name="android:textColor">@color/mainTextColor</item>
+    </style>
+
     <style name="GreenButton" parent="Base.TextAppearance.AppCompat.Button.CustomButton">
         <item name="android:backgroundTint">@color/greenDark</item>
         <item name="android:textColor">@android:color/white</item>

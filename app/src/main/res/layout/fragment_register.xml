@@ -89,10 +89,9 @@
                 android:text="@string/sign_up"
                 android:drawableStart="@drawable/ic_baseline_add_24"
                 android:padding="10dp"
-                android:backgroundTint="@color/colorAccent"
                 android:paddingEnd="20dp"
                 android:drawableTint="@android:color/white"
-                style="@style/BlueButton"/>
+                style="@style/AccentButton"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
