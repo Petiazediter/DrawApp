@@ -47,9 +47,13 @@
     </style>
 
     <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:backgroundTint">@color/colorPrimaryDark</item>
         <item name="android:background">@drawable/edit_bg</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:padding">10dp</item>
-    </style>
+        <item name="android:textColor">@color/mainTextColor</item>
+        <item name="android:textColorHint">@color/secondaryTextColor</item>
+        <item name="android:drawableTint">@color/secondaryTextColor</item>
+</style>
 </resources>

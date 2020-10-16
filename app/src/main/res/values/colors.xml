@@ -33,4 +33,8 @@
     <color name="colorPrimary">#38395A</color>
     <color name="colorPrimaryDark">#424368</color>
     <color name="colorAccent">#EE65BC</color>
+
+    <color name="secondaryTextColor">#858699</color>
+    <color name="mainTextColor">#ffffff</color>
+    <color name="colorPrimaryDarkX">#33334D</color>
 </resources>

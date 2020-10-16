@@ -16,6 +16,8 @@
 
 
     <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/colorPrimaryDarkX"
+        app:cardElevation="15dp"
         android:id="@+id/edit_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,10 +38,8 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <EditText
-                android:backgroundTint="@color/backgroundColor"
                 android:layout_marginVertical="10dp"
                 android:id="@+id/username"
-                android:background="@drawable/edit_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
@@ -48,7 +48,6 @@
                 android:drawableStart="@drawable/ic_baseline_person_24" />
 
             <EditText
-                android:backgroundTint="@color/backgroundColor"
                 android:layout_marginVertical="10dp"
                 android:id="@+id/password"
                 android:background="@drawable/edit_bg"
@@ -60,8 +59,6 @@
                 style="@style/CustomEditText"/>
 
             <EditText
-                android:backgroundTint="@color/backgroundColor"
-
                 android:layout_marginVertical="10dp"
                 android:id="@+id/password2"
                 android:background="@drawable/edit_bg"
@@ -73,7 +70,6 @@
                 android:drawableStart="@drawable/ic_baseline_lock_24" />
 
             <EditText
-                android:backgroundTint="@color/backgroundColor"
                 android:layout_marginVertical="10dp"
                 android:id="@+id/email"
                 android:background="@drawable/edit_bg"
@@ -93,6 +89,7 @@
                 android:text="@string/sign_up"
                 android:drawableStart="@drawable/ic_baseline_add_24"
                 android:padding="10dp"
+                android:backgroundTint="@color/colorAccent"
                 android:paddingEnd="20dp"
                 android:drawableTint="@android:color/white"
                 style="@style/BlueButton"/>
