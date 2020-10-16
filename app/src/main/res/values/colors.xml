@@ -28,4 +28,9 @@
     <color name="activity_bg">#eb3b5a</color>
 
     <color name="wave_blue">#0099FF</color>
+
+    <!-- Purple redesign -->
+    <color name="colorPrimary">#38395A</color>
+    <color name="colorPrimaryDark">#424368</color>
+    <color name="colorAccent">#EE65BC</color>
 </resources>
