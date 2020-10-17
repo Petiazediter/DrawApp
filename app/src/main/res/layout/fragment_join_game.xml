@@ -24,7 +24,7 @@
         android:drawableTint="@color/secondaryTextColor"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
-        android:hint="Code"
+        android:hint="CODE"
         android:inputType="text"
         android:maxLength="6"
         android:padding="5dp"

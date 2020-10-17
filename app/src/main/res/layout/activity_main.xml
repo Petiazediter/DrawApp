@@ -7,8 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-
-
     <fragment
         android:id="@+id/activity_fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -18,6 +16,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/my_nav" />
-
-
+    
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -20,8 +20,8 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="40dp"
-        android:outlineProvider="bounds"
         android:background="@drawable/ic_logoutbtn"
+        android:outlineProvider="bounds"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
