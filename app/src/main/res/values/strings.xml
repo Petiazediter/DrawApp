@@ -24,4 +24,11 @@
     <string name="what_is_it">What is it?</string>
     <string name="what_was_the_original_word">What was the original word?</string>
     <string name="i_don_t_have_an_account_yet">I don\'t have an account yet!</string>
+    <string name="connect_with_your_friends">Connect with your Friends!</string>
+    <string name="connect_desc">You can easily add new friends and enjoy the game with them! Invite them or join to to them, its super easy!</string>
+    <string name="friends">Friends</string>
+    <string name="play_the_game">Play the game!</string>
+    <string name="play_the_game_desc">You are one tap away from playing. What are you waiting for?</string>
+    <string name="host_game">Host game</string>
+    <string name="join_game">Join Game</string>
 </resources>

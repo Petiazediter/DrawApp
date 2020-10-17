@@ -40,24 +40,26 @@
         app:layout_constraintRight_toRightOf="@id/log_out_button"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Connect with your\nFriends!"
+            android:text="@string/connect_with_your_friends"
             style="@style/MenuH1Style"/>
 
         <TextView
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You can easily add new friends and enjoy the game with them! Invite them or join to to them, its super easy!"
+            android:text="@string/connect_desc"
             style="@style/MenuH2Style"/>
 
         <Button
@@ -66,20 +68,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/GradientButton"
-            android:text="Friends"/>
+            android:text="@string/friends"/>
 
         <TextView
             android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Play the game!"
+            android:text="@string/play_the_game"
             style="@style/MenuH1Style"/>
 
         <TextView
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You are one tap away from playing. What are you waiting for?"
+            android:text="@string/play_the_game_desc"
             style="@style/MenuH2Style"/>
 
         <Button
@@ -88,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/GradientButton"
-            android:text="Host game"/>
+            android:text="@string/host_game"/>
 
         <Button
             android:id="@+id/join_game_button"
@@ -96,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/GradientButton"
-            android:text="Join Game"/>
+            android:text="@string/join_game"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
