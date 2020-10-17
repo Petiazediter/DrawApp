@@ -1,21 +1,19 @@
 package com.codecool.drawapp
 
-import android.app.Activity
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.view.WindowInsets
 import android.view.WindowManager
-import com.jaeger.library.StatusBarUtil
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        setSupportActionBar(toolbar)
     }
 
     override fun onBackPressed() {
@@ -25,8 +23,11 @@ class MainActivity : AppCompatActivity() {
             ?.childFragmentManager?.fragments?.get(0)
 
         fragment?.let{
-            Log.d("MainActivity()", "Fragment found! ${it.id}" )
-            (it as? BackButtonInterface)?.onBackButtonPressed() ?: run {Log.d("MainActivity()", "Not implemented interface")}
+            Log.d("MainActivity()", "Fragment found! ${it.id}")
+            (it as? BackButtonInterface)?.onBackButtonPressed() ?: run {Log.d(
+                "MainActivity()",
+                "Not implemented interface"
+            )}
         } ?: run { Log.d("MainActivity", "No fragment found!")}
     }
 
