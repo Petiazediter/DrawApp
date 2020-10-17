@@ -17,27 +17,14 @@
 
     <ImageView
         android:id="@+id/log_out_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_margin="40dp"
         android:outlineProvider="bounds"
-        android:src="@drawable/ic_smallbtn"
+        android:background="@drawable/ic_logoutbtn"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:outlineProvider="bounds"
-        android:src="@drawable/ic_logout"
-        app:layout_constrainedHeight="true"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="@id/log_out_button"
-        app:layout_constraintLeft_toLeftOf="@id/log_out_button"
-        app:layout_constraintRight_toRightOf="@id/log_out_button"
-        app:layout_constraintTop_toTopOf="@id/log_out_button"
-        app:tint="@color/mainTextColor" />
 
     <LinearLayout
         android:layout_width="match_parent"
