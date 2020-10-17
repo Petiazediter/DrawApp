@@ -31,4 +31,9 @@
     <string name="play_the_game_desc">You are one tap away from playing. What are you waiting for?</string>
     <string name="host_game">Host game</string>
     <string name="join_game">Join Game</string>
+    <string name="lobby_details">Lobby Details:</string>
+    <string name="code">Code:</string>
+    <string name="qwzefmp">QWZEFMP</string>
+    <string name="players">Players:</string>
+    <string name="_0_6">0/6</string>
 </resources>

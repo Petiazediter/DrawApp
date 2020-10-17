@@ -50,16 +50,15 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener, MainActivity.B
         // Success game create
         presenter.joinLobby(gameLobby, this)
 
-        loading_bar.visibility = View.INVISIBLE
+        loading_bar.visibility = View.GONE
         loading_bar.stopRippleAnimation()
-        mid.visibility = View.VISIBLE
-        max_players.visibility = View.VISIBLE
 
-        room_code.visibility = View.VISIBLE
+        details_grid.visibility = View.VISIBLE
+        lobby_details_tv.visibility = View.VISIBLE
+
         room_code.text = "#"+gameLobby.gameId.substring(1,7)
 
-        current_players.visibility = View.VISIBLE
-        current_players.text = gameLobby.players.size.toString()
+        current_players.text = "${gameLobby.players.size.toString()}/6"
 
         friendsRecycler.visibility = View.VISIBLE
 
@@ -84,7 +83,7 @@ class LobbyFragment : Fragment(), LobbyContractor, LobbyListener, MainActivity.B
     }
 
     override fun changeLobby(gameLobby: GameLobby) {
-        current_players.text = gameLobby.players.size.toString()
+        current_players.text =  "${gameLobby.players.size.toString()}/6"
         updateStartGameButton(gameLobby)
         if ( gameLobby.round > 0){
             moveToGameView(gameLobby)
