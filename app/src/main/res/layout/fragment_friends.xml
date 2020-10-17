@@ -6,29 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".friends_fragment.FriendsFragment">
 
-    <ImageView
-        android:id="@+id/waves"
+    <include
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        layout="@layout/background_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <TextView
+        android:id="@+id/friends_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rotation="180"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_waves"
+        android:text="@string/friends"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="140dp"
+        style="@style/MenuH1Style"
+        android:textSize="60sp"/>
+
+    <TextView
+        android:id="@+id/friends_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MenuH2Style"
+        app:layout_constraintTop_toBottomOf="@id/friends_tv"
+        app:layout_constraintLeft_toLeftOf="@id/friends_tv"
+        tools:text="(3)"
+        android:textSize="32sp"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="40dp"
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
         android:visibility="invisible"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/my_invites"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/waves"
+        app:layout_constraintTop_toBottomOf="@id/friends_count"
         tools:visibility="visible" />
-
 
     <include
         layout="@layout/loading_view"
