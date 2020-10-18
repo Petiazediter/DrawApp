@@ -6,15 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".game_view.GameView">
 
-    <ImageView
-        android:id="@+id/waves"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:rotation="180"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_waves"
+    <include
+        layout="@layout/background_layout"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -24,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/waves"
+        app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/wave_blue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

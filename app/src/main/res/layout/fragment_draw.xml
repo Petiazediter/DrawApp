@@ -6,84 +6,170 @@
     android:layout_height="match_parent"
     tools:context=".game_view.fragments.draw_section.DrawFragment">
 
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/background_layout"/>
+
+
+    <LinearLayout
+        android:id="@+id/timer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+            <com.veeyaar.supergradienttextview.GradientTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:startColor="@color/colorAccent"
+                app:endColor="@color/colorPurple"
+                app:isVertical="true"
+                tools:text="60"
+                android:id="@+id/timer_text"
+                android:gravity="end"
+                tools:textColor="@color/mainTextColor"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="29sp"/>
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="seconds left"
+                android:textColor="@color/mainTextColor"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="29sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/draw_layout"
+        android:layout_marginBottom="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/timer_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constrainedHeight="true"
+        android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:id="@+id/colors"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="0"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/color_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@android:color/black" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/color_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@android:color/holo_red_light" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/color_yellow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@color/yellow" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/color_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@color/wave_blue" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/erase_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@android:color/white"
+                    android:src="@drawable/ic_eraser" />
+            </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/draw_container"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/mainTextColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/your_word_is"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/draw_layout"
+        app:layout_constraintLeft_toLeftOf="@id/draw_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your"
+            android:layout_marginHorizontal="2.5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="25sp"
+            android:textColor="@color/mainTextColor"/>
+
+        <com.veeyaar.supergradienttextview.GradientTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="word"
+            android:layout_marginHorizontal="2.5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="25sp"
+            app:startColor="@color/colorPurple"
+            app:endColor="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="is:"
+            android:layout_marginHorizontal="2.5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="25sp"
+            android:textColor="@color/mainTextColor"/>
+
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/word_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
+        android:layout_marginStart="5dp"
+        android:textStyle="italic"
         android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/your_word_is"
+        app:layout_constraintTop_toBottomOf="@id/your_word_is"
+        tools:textColor="@color/mainTextColor"
         tools:text="word" />
 
 
-    <TextView
-        android:id="@+id/timer_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="60"
-        android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/word_tv" />
 
-    <FrameLayout
-        android:id="@+id/draw_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/colors"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timer_text"
-        tools:background="@color/blue" />
 
-    <LinearLayout
-        android:id="@+id/colors"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/color_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@android:color/black" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/color_red"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@android:color/holo_red_light" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/color_yellow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/yellow" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/color_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/wave_blue" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/erase_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="5dp"
-            android:backgroundTint="@android:color/white"
-            android:src="@drawable/ic_eraser" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

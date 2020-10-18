@@ -77,4 +77,5 @@ dependencies {
 
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
 
+    implementation 'com.github.veeyaarVR:SuperGradientTextView:1.1'
 }
