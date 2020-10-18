@@ -32,7 +32,6 @@
                 tools:text="60"
                 android:id="@+id/timer_text"
                 android:gravity="end"
-                tools:textColor="@color/mainTextColor"
                 android:fontFamily="@font/roboto_bold"
                 android:textSize="29sp"/>
 
@@ -48,7 +47,7 @@
 
     <LinearLayout
         android:id="@+id/draw_layout"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="170dp"
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
@@ -60,6 +59,7 @@
 
 
             <LinearLayout
+                android:layout_marginEnd="5dp"
                 android:id="@+id/colors"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -69,41 +69,40 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <Button
                     android:id="@+id/color_black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:backgroundTint="@android:color/black" />
+                    android:layout_weight="1"
+                    android:background="@android:color/black"/>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <Button
                     android:id="@+id/color_red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:backgroundTint="@android:color/holo_red_light" />
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_light" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <Button
                     android:id="@+id/color_yellow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:backgroundTint="@color/yellow" />
+                    android:layout_weight="1"
+                    android:background="@color/yellow" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <Button
                     android:id="@+id/color_blue"
                     android:layout_width="wrap_content"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:backgroundTint="@color/wave_blue" />
+                    android:background="@color/wave_blue" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <Button
+                    android:layout_weight="1"
                     android:id="@+id/erase_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:backgroundTint="@android:color/white"
-                    android:src="@drawable/ic_eraser" />
+                    android:background="@android:color/white" />
             </LinearLayout>
 
         <FrameLayout
