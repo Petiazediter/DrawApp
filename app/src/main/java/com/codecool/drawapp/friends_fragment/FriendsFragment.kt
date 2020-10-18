@@ -35,6 +35,7 @@ class FriendsFragment : Fragment(), FriendsContractor {
 
     override fun displayRecycler(list: List<User>) {
         context?.let{
+            friends_count.text = "(${list.size})"
             recycler.adapter = FriendsAdapter(list, LayoutInflater.from(it),this)
             recycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL, false)
             recycler.visibility = View.VISIBLE
