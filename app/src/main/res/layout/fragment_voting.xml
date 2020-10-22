@@ -10,15 +10,15 @@
         layout="@layout/background_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linear_layout_vote"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginBottom="50dp"
+        android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -35,20 +35,20 @@
         <ImageView
             android:id="@+id/drawing_iv"
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_weight="2"
-            tools:src="@drawable/userpic"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white"
+            tools:src="@drawable/userpic" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
             android:id="@+id/recycler_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/guess_row"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
             tools:itemCount="10"
-            android:layout_weight="1" />
+            tools:listitem="@layout/guess_row" />
 
     </LinearLayout>
 
