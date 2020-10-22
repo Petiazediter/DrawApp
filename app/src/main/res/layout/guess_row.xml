@@ -4,17 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/wave_blue"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    android:layout_margin="10dp"
+    tools:background="@color/colorPrimaryDark">
 
         <TextView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/guess_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,8 +18,7 @@
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            tools:text="Guess1" />
-    </androidx.cardview.widget.CardView>
-
-
+            tools:text="Guess1"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="@color/colorPrimaryDarkX"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

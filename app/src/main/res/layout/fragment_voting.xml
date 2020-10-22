@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".game_view.fragments.voting.VotingView">
 
+    <include
+        layout="@layout/background_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
     <LinearLayout
         android:id="@+id/linear_layout_vote"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginBottom="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,19 +29,25 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/what_was_the_original_word"
+            android:textColor="@color/mainTextColor"
             android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/drawing_iv"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            tools:src="@drawable/userpic" />
+            tools:src="@drawable/userpic"
+            android:background="@android:color/white"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
             android:id="@+id/recycler_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            tools:listitem="@layout/guess_row"
+            tools:itemCount="10"
             android:layout_weight="1" />
 
     </LinearLayout>
