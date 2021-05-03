@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".game_view.fragments.draw_section.DrawFragment">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/background_layout"/>
+
+
+    <LinearLayout
+        android:id="@+id/timer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+            <com.veeyaar.supergradienttextview.GradientTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:startColor="@color/colorAccent"
+                app:endColor="@color/colorPurple"
+                app:isVertical="true"
+                tools:text="60"
+                android:id="@+id/timer_text"
+                android:gravity="end"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="29sp"/>
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="seconds left"
+                android:textColor="@color/mainTextColor"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="29sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/draw_layout"
+        android:layout_marginBottom="170dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/timer_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constrainedHeight="true"
+        android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_marginEnd="5dp"
+                android:id="@+id/colors"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <Button
+                    android:id="@+id/color_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/black"/>
+
+                <Button
+                    android:id="@+id/color_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_light" />
+
+                <Button
+                    android:id="@+id/color_yellow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/yellow" />
+
+                <Button
+                    android:id="@+id/color_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@color/wave_blue" />
+
+                <Button
+                    android:layout_weight="1"
+                    android:id="@+id/erase_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white" />
+            </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/draw_container"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/mainTextColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/your_word_is"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/draw_layout"
+        app:layout_constraintLeft_toLeftOf="@id/draw_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your"
+            android:layout_marginHorizontal="2.5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="25sp"
+            android:textColor="@color/mainTextColor"/>
+
+        <com.veeyaar.supergradienttextview.GradientTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="word"
+            android:layout_marginHorizontal="2.5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="25sp"
+            app:startColor="@color/colorPurple"
+            app:endColor="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="is:"
+            android:layout_marginHorizontal="2.5dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="25sp"
+            android:textColor="@color/mainTextColor"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/word_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:layout_marginStart="5dp"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="@id/your_word_is"
+        app:layout_constraintTop_toBottomOf="@id/your_word_is"
+        android:textColor="@color/mainTextColor"
+        tools:text="word" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

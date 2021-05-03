@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginStart="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/linear"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/friend_row_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            style="@style/MenuH1Style"
+            android:id="@+id/name_space"
+            android:paddingStart="45dp"
+            android:gravity="center"
+            android:paddingEnd="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="25sp"
+            tools:text="Username" />
+    </LinearLayout>
+
+    <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/user_pic_default"
+        app:layout_constraintLeft_toLeftOf="@id/linear"
+        app:layout_constraintRight_toLeftOf="@id/linear"
+        app:layout_constraintTop_toTopOf="@id/linear"
+        app:layout_constraintBottom_toBottomOf="@id/linear"
+        app:siShape="@drawable/ic_profile_mask"
+        app:siSquare="true" />
+</androidx.constraintlayout.widget.ConstraintLayout>

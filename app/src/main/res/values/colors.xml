@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <color name="purple">#575fcf</color>
+    <color name="purpleDark">#3c40c6</color>
+
+    <color name="backgroundColor">#f0f0f0</color>
+
+
+    <color name="red">#fc5c65</color>
+    <color name="redDark">#eb3b5a</color>
+
+    <color name="orange">#fd9644</color>
+    <color name="orangeDark">#fa8231</color>
+    
+    <color name="yellow">#fed330</color>
+    <color name="yellowDark">#f7b731</color>
+
+    <color name="green">#3ae374</color>
+    <color name="greenDark">#20bf6b</color>
+
+    <color name="blue">#45aaf2</color>
+    <color name="blueDark">#1e90ff</color>
+    
+    <color name="cyan">#2bcbba</color>
+    <color name="cyanDark">#0fb9b1</color>
+
+    <color name="activity_bg">#eb3b5a</color>
+
+    <color name="wave_blue">#0099FF</color>
+
+    <!-- Purple redesign -->
+    <color name="colorPrimary">#38395A</color>
+    <color name="colorPrimaryDark">#424368</color>
+    <color name="colorAccent">#EE65BC</color>
+
+    <color name="secondaryTextColor">#858699</color>
+    <color name="mainTextColor">#ffffff</color>
+    <color name="colorPrimaryDarkX">#33334D</color>
+    <color name="colorYellow">#ECBE59</color>
+    <color name="colorPurple">#CA75FC</color>
 </resources>

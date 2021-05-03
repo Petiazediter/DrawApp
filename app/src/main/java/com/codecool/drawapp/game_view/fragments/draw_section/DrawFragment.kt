@@ -1,0 +1,54 @@
+package com.codecool.drawapp.game_view.fragments.draw_section
+
+import android.graphics.Color
+import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.get
+import com.codecool.drawapp.R
+import kotlinx.android.synthetic.main.fragment_draw.*
+import kotlinx.android.synthetic.main.fragment_draw.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
+
+class DrawFragment : Fragment() {
+
+    private var canvasView : CanvasView? = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_draw, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        canvasView = CanvasView(requireContext())
+        canvasView?.let{canvasView ->
+        view.draw_container.addView(canvasView)
+            Log.d("DrawFragment()", "Canvas view added to frame layout!")
+            erase_button.setOnClickListener { canvasView.setColor(Color.WHITE) }
+            color_black.setOnClickListener { canvasView.setColor(Color.BLACK) }
+            color_blue.setOnClickListener  { canvasView.setColor(Color.BLUE) }
+            color_red.setOnClickListener   { canvasView.setColor(Color.RED) }
+            color_yellow.setOnClickListener { canvasView.setColor(Color.YELLOW) }
+        }
+    }
+
+    fun setWord(word: String) {
+        view?.word_tv?.text = word
+    }
+
+    fun getCanvasView() : View?{
+        canvasView?.let{
+            Log.d("DrawFragment", "Width : ${it.width}  | Height : ${it.height}")
+            return it
+        }
+        return null
+    }
+}

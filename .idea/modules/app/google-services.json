@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "402231231510",
+    "firebase_url": "https://drawapp-ab9e1.firebaseio.com",
+    "project_id": "drawapp-ab9e1",
+    "storage_bucket": "drawapp-ab9e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402231231510:android:74a37893e9db020226a137",
+        "android_client_info": {
+          "package_name": "com.codecool.drawapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402231231510-s4qeoc3fpoq5rfrg6081mvi88gntse3j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codecool.drawapp",
+            "certificate_hash": "9c9a5eae4e0fc53c8083b91447e17bb0f7552c20"
+          }
+        },
+        {
+          "client_id": "402231231510-46e74bg610q1qh0b18hdokl3sbmfpi3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqk-2fk6IG4G6uSuHVh3fmkqN-Ywub5NU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402231231510-46e74bg610q1qh0b18hdokl3sbmfpi3e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
